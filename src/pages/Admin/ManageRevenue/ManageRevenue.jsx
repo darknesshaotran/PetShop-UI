@@ -33,7 +33,7 @@ function ManageRevenue() {
 
   useEffect(() => {
     const fetchApiRevenue = async (fromDate, toDate) => {
-      const response = await axios.get('https://2hm-store.click/api/revenue', {
+      const response = await axios.get('http://localhost:8000/api/revenue', {
         params: {
           startDate: fromDate,
           endDate: toDate,
@@ -53,7 +53,7 @@ function ManageRevenue() {
     };
 
     const fetchAPICustomers = async (page, limit) => {
-      const response = await axios.get('https://2hm-store.click/api/revenue/customer', {
+      const response = await axios.get('http://localhost:8000/api/revenue/customer', {
         params: {
           page: 1,
           limit: 20,
@@ -66,7 +66,7 @@ function ManageRevenue() {
     };
 
     const fetchAPIShoes = async (page, limit) => {
-      const response = await axios.get('https://2hm-store.click/api/revenue/product', {
+      const response = await axios.get('http://localhost:8000/api/revenue/product', {
         params: {
           page: 1,
           limit: 20,
@@ -86,7 +86,7 @@ function ManageRevenue() {
   return (
     <div className={cx('wrapper')}>
       <div className={cx('revenue-field')}>
-        <div className={cx('header1')}>Thống kê đơn bán hàng</div>
+        <div className={cx('header1')}>注文統計</div>
 
         <div className={cx('date-field')}>
           <div className={cx('date')}>
@@ -117,16 +117,16 @@ function ManageRevenue() {
             <XAxis dataKey="revenue_date" />
             <Tooltip />
             <Legend iconType="circle" align="center" iconSize={14} />
-            <Bar dataKey="revenue" fill="#8884d8" name="Doanh thu" />
-            <Bar dataKey="profit" fill="#82ca9d" name="Lợi nhuận" />
+            <Bar dataKey="revenue" fill="#8884d8" name="収入" />
+            <Bar dataKey="profit" fill="#82ca9d" name="利益" />
           </BarChart>
         </div>
       </div>
       <div className={cx('revenue-field')}>
-        <div className={cx('header1')}>Thống kê chung trong một năm</div>
+        <div className={cx('header1')}>年間統計</div>
         <div className={cx('content')}>
           <div className={cx('Top10')}>
-            <div className={cx('header')}>Top 20 khách hàng bán chạy nhất năm</div>
+            <div className={cx('header')}>年間売上トップ20顧客</div>
             <ul className={cx('products')}>
               {topCustomer &&
                 topCustomer.map((product, index) => {
@@ -138,7 +138,7 @@ function ManageRevenue() {
                         <Link className={cx('under-line')} to={`/otherProfiles/${product.id}`}>
                           {product.inforUser.lastname} 
                         </Link>
-                        {' '}  với{' '}
+                        {' '} ー{' '}
                         <span className={cx('high-light')}> {formatCurrency(product.point * 1000)}</span>
                       </li>
                     )
@@ -148,14 +148,14 @@ function ManageRevenue() {
           </div>
 
           <div className={cx('BestCustomer')}>
-            <div className={cx('header')}>Tổng doanh thu</div>
-            <span className={cx('number')}>{totalRevenue && formatCurrency(totalRevenue)} Tổng giá</span>
-            <div className={cx('header')}>Tổng lợi nhuận</div>
-            <span className={cx('number')}>{totalProfit && formatCurrency(totalProfit)} Tổng giá</span>
+            <div className={cx('header')}>総売上</div>
+            <span className={cx('number')}>{totalRevenue && formatCurrency(totalRevenue)} 総価格</span>
+            <div className={cx('header')}>総利益</div>
+            <span className={cx('number')}>{totalProfit && formatCurrency(totalProfit)} 総価格</span>
           </div>
 
           <div className={cx('Top10')}>
-            <div className={cx('header')}>Top 20 sản phẩm bán chạy nhất năm</div>
+            <div className={cx('header')}>年間売上トップ20商品</div>
             <ul className={cx('products')}>
               {topProducts &&
                 topProducts.map((product, index) => {
@@ -166,8 +166,8 @@ function ManageRevenue() {
                       <Link className={cx('under-line')} to={`/detailItem/${product.id}`}>
                       {product.name}
                       </Link>
-                      {' '} với{' '}
-                      <span className={cx('high-light')}> {product.soldProductNum} sản phẩm</span>
+                      {' '} ー{' '}
+                      <span className={cx('high-light')}> {product.soldProductNum} 個</span>
                     </li>
                   );
                 })}

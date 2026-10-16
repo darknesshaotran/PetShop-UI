@@ -18,7 +18,7 @@ function HistoryOrderSuccess() {
 
   useEffect(() => {
     const getApiOrderPending = async () => {
-      const response = await axios.get('https://2hm-store.click/api/order/status/4', {
+      const response = await axios.get('http://localhost:8000/api/order/status/4', {
         headers: { Authorization: `Bearer ${GetToken()}` },
       });
       setOrderList(response.data.result);
@@ -36,7 +36,7 @@ function HistoryOrderSuccess() {
           <HistoryMenuOrder />
         </Suspense>
       </div>
-      <span className={cx('title-content')}>Đơn hàng đã giao thành công</span>
+      <span className={cx('title-content')}>配達完了</span>
       <div className={cx('order-list')}>
         {orderList.map((order) => (
           <Suspense key={order.id} fallback={<div>Loading...</div>}>

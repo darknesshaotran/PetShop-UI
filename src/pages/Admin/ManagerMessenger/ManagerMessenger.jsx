@@ -13,7 +13,7 @@ export default function Messenger() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [idUser, setIdUser] = useState();
-  const [chatUserName, setChatUserName] = useState('Chào mừng đến với Message PetShop');
+  const [chatUserName, setChatUserName] = useState('Message PetShop へようこそ！');
   const [newMessage, setNewMessage] = useState('');
   const [chatUserId, setChatUserId] = useState();
   const [socket, setSocket] = useState(null);
@@ -39,7 +39,7 @@ export default function Messenger() {
 
   const fetchListMessage = async () => {
     try {
-      const response = await axios.get('https://2hm-store.click/api/message?limit=10&page=1', {
+      const response = await axios.get('http://localhost:8000/api/message?limit=10&page=1', {
         headers: { Authorization: `Bearer ${GetToken()}` },
       });
       if (response.data.success && Array.isArray(response.data.conversations)) {
@@ -61,7 +61,7 @@ export default function Messenger() {
         socket.disconnect();
       }
 
-      const newSocket = io('https://2hm-store.click/');
+      const newSocket = io('http://localhost:8000/');
       setSocket(newSocket);
       newSocket.on('connect', () => {
         console.log(newSocket.id);
@@ -85,7 +85,7 @@ export default function Messenger() {
         }, 0);
       });
 
-      const response = await axios.get(`https://2hm-store.click/api/message/${id}?limit=100&page=1`, {
+      const response = await axios.get(`http://localhost:8000/api/message/${id}?limit=100&page=1`, {
         headers: { Authorization: `Bearer ${GetToken()}` },
       });
       if (response.data.success && Array.isArray(response.data.messages)) {
@@ -106,7 +106,7 @@ export default function Messenger() {
 
   const fetchMe = async () => {
     try {
-      const response = await axios.get('https://2hm-store.click/api/user/profile/me', {
+      const response = await axios.get('http://localhost:8000/api/user/profile/me', {
         headers: { Authorization: `Bearer ${GetToken()}` },
       });
       setIdUser(response.data.user.id);
@@ -187,7 +187,7 @@ export default function Messenger() {
         <div className={cx('messageInput')}>
           <input
             type="text"
-            placeholder="Nhập tin nhắn..."
+            placeholder="メッセージを入力..."
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             onKeyDown={(e) => {

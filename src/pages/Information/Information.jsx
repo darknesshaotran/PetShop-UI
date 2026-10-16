@@ -38,7 +38,7 @@ function Information() {
   useEffect(() => {
     const fetchAPIProfile = async () => {
       try {
-        const response = await axios.get('https://2hm-store.click/api/user/profile/me', {
+        const response = await axios.get('http://localhost:8000/api/user/profile/me', {
           headers: {
             Authorization: `Bearer ${GetToken()}`,
           },
@@ -69,7 +69,7 @@ function Information() {
   const handleUpdateInfor = async () => {
     try {
       const res = await axios.put(
-        'https://2hm-store.click/api/user/updateProfile',
+        'http://localhost:8000/api/user/updateProfile',
         {
           lastname: payload1.lastName,
           firstname: payload1.firstName,
@@ -94,7 +94,7 @@ function Information() {
   const handleUpdateAva = async () => {
     const formData = new FormData();
     formData.append('image', avatar);
-    const response = await fetch('https://2hm-store.click/api/user/update-avatar', {
+    const response = await fetch('http://localhost:8000/api/user/update-avatar', {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${GetToken()}`,
@@ -116,7 +116,7 @@ function Information() {
   const handleChangePassword = async (oldPass, newPass, againPass) => {
     await axios
       .put(
-        'https://2hm-store.click/api/user/change-password',
+        'http://localhost:8000/api/user/change-password',
         {
           Password: oldPass,
           NewPassword: newPass,
@@ -179,10 +179,10 @@ function Information() {
         theme="light"
       />
       <div className={cx('container')}>
-        <div className={cx('main-header')}>Thông tin cá nhân</div>
+        <div className={cx('main-header')}>個人情報</div>
         <div className={cx('information-field')}>
           <div className={cx('avatar-section')}>
-            {image && <img src={image} className={cx('image')} alt="Ảnh đại diện" />}
+            {image && <img src={image} className={cx('image')} alt="アバター" />}
             
             <label htmlFor="file-upload1" className={cx('upload-btn')}>
               <FontAwesomeIcon icon={faUpload} />
@@ -196,12 +196,12 @@ function Information() {
                 handleUpdateAva();
               }}
             >
-              Cập nhật ảnh
+              アバターを更新
             </Button>
           </div>
           <div className={cx('info-section')}>
             <div className={cx('info-header')}>
-              Họ và tên
+              氏名
             </div>
             <div className={cx('text-field')}>
               <div className={cx('input-field')}>
@@ -230,11 +230,11 @@ function Information() {
               </div>
             </div>
             <div className={cx('text-field')}>
-              <div className={cx('header')}>Số điện thoại</div>
+              <div className={cx('header')}>電話番号</div>
               <div className={cx('input-field')}>
                 <div className={cx('input-wrapper')}>
                   <InputForm
-                    placeholder="Số điện thoại"
+                    placeholder="電話番号"
                     type="text"
                     value={payload1.phoneNumber}
                     setValue={setPayload1}
@@ -247,10 +247,10 @@ function Information() {
             </div>
             <div className={cx('buttons')}>
               <Button blue onClick={() => handleUpdateInfor()}>
-                Lưu
+                保存
               </Button>
               <Button primary onClick={openModal}>
-                Đổi mật khẩu
+                パスワードを変更
               </Button>
             </div>
           </div>
@@ -258,11 +258,11 @@ function Information() {
       </div>
       <Popup isOpen={isModalOpen} onRequestClose={() => closeModal()} width={'700px'} height={'500px'}>
         <animated.div style={modalAnimation}>
-          <h2>Change password</h2>
-          <div className={cx('header')}>Please enter your old password</div>
+          <h2>パスワードを変更</h2>
+          <div className={cx('header')}>古いパスワードを入力してください</div>
           <div className={cx('input-field')}>
             <InputForm
-              placeholder="Old Password"
+              placeholder="古いパスワード"
               type="password"
               value={payload2.password}
               setValue={setPayload2}
@@ -270,10 +270,10 @@ function Information() {
               className={cx('input')}
             />
           </div>
-          <div className={cx('header')}>Please enter your new password</div>
+          <div className={cx('header')}>新しいパスワードを入力してください</div>
           <div className={cx('input-field')}>
             <InputForm
-              placeholder="Mật khẩu mới"
+              placeholder="新しいパスワード"
               type="password"
               value={payload2.newPassword}
               setValue={setPayload2}
@@ -281,10 +281,10 @@ function Information() {
               className={cx('input')}
             />
           </div>
-          <div className={cx('header')}>Please enter your new password again</div>
+          <div className={cx('header')}>新しいパスワードを再入力してください</div>
           <div className={cx('input-field')}>
             <InputForm
-              placeholder="Nhập lại mật khẩu"
+              placeholder="新しいパスワードを再入力"
               type="password"
               value={payload2.againPassword}
               setValue={setPayload2}
@@ -300,7 +300,7 @@ function Information() {
               }}
               outline
             >
-              Xác nhận
+              確認
             </Button>
           </div>
         </animated.div>

@@ -13,7 +13,7 @@ const ForumList = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get('https://2hm-store.click/api/post/forum');
+      const response = await axios.get('http://localhost:8000/api/post/forum');
       if (response.data.success && Array.isArray(response.data.result)) {
         setData(response.data.result);
       }
@@ -40,7 +40,7 @@ const ForumList = () => {
     return (
       <div>
         <Link to="/createPost" className={cx('createPostButton')}>
-          Thêm bài viết
+          投稿する
         </Link>
       </div>
     );
@@ -49,7 +49,7 @@ const ForumList = () => {
   return (
     <>
       <Link to="/createPost" className={cx('createPostButton')}>
-        Thêm bài viết
+        投稿する
       </Link>
       <div className={cx('forumContainer')}>
         {data.map((post, index) => (
@@ -85,8 +85,8 @@ const ForumList = () => {
             </div>
             <div className={cx('forumPostRight')}>
               <div className={cx('forumMeta')}>
-                <div>Trả lời: {post.replyNum}</div>
-                <div>Lượt xem: {post.view}</div>
+                <div>返信: {post.replyNum}</div>
+                <div>閲覧数: {post.view}</div>
               </div>
               <div className={cx('forumDateTime')}>{new Date(post.createdAt).toLocaleString()}</div>
             </div>

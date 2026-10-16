@@ -47,7 +47,7 @@ function BookItemHistory() {
   useEffect(() => {
     const getApiHistoryDetail = async () => {
       try {
-        const response = await axios.get(`https://2hm-store.click/api/order/${id}`, {
+        const response = await axios.get(`http://localhost:8000/api/order/${id}`, {
           headers: {
             Authorization: `Bearer ${GetToken()}`,
           },
@@ -66,7 +66,7 @@ function BookItemHistory() {
   const handleRating = async (idShoe, idOrder, star, comment) => {
     await axios
       .post(
-        'https://2hm-store.click/api/rating/add',
+        'http://localhost:8000/api/rating/add',
         {
           id_shoes: idShoe,
           id_order_item: idOrder,
@@ -157,7 +157,7 @@ function BookItemHistory() {
 
           <div className={cx('options1')}>
             <Button onClick={() => handleRating(idShoe, idOrder, rating, payload.comment)} primary>
-            Xác nhận
+            確認
             </Button>
           </div>
         </animated.div>
@@ -193,11 +193,11 @@ function BookItemHistory() {
                         blue
                         className={cx('btn')}
                       >
-                        Rating
+                        評価
                       </Button>
                     ) : null}
                     <Button to={`/detailItem/${order.Shoes.id}`} white className={cx('btn')}>
-                      Repurchase
+                      再購入
                     </Button>
                   </div>
                 </div>

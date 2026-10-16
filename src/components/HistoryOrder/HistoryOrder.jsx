@@ -65,7 +65,7 @@ function HistoryOrder({ data, icon }) {
 
   const openModalPending = async (id) => {
     setIsModalOpen(true);
-    const response = await axios.get(`https://2hm-store.click/api/order/${id}`, {
+    const response = await axios.get(`http://localhost:8000/api/order/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${GetToken()}`,
@@ -76,7 +76,7 @@ function HistoryOrder({ data, icon }) {
 
   const openModalSuccessfully = async (id) => {
     setIsModalOpenSuccessfully(true);
-    const response = await axios.get(`https://2hm-store.click/api/order/${id}`, {
+    const response = await axios.get(`http://localhost:8000/api/order/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${GetToken()}`,
@@ -88,7 +88,7 @@ function HistoryOrder({ data, icon }) {
   const handleRating = async (id_product, idOrder, star, comment) => {
     await axios
       .post(
-        `https://2hm-store.click/api/rating/add`,
+        `http://localhost:8000/api/rating/add`,
         {
           id_product: id_product,
           id_order_item: idOrder,
@@ -117,7 +117,7 @@ function HistoryOrder({ data, icon }) {
     console.log('gettoke', GetToken());
     await axios
       .put(
-        `https://2hm-store.click/api/order/cancel/${orderId}`,
+        `http://localhost:8000/api/order/cancel/${orderId}`,
         {},
         {
           headers: {
@@ -150,7 +150,7 @@ function HistoryOrder({ data, icon }) {
           className={cx('btn')}
           blue
         >
-          Chi tiết
+          詳細
         </Button>
         <Button
           onClick={() => {
@@ -159,7 +159,7 @@ function HistoryOrder({ data, icon }) {
           className={cx('btn')}
           outline
         >
-          Hủy
+          キャンセル
         </Button>
       </div>
     );
@@ -174,7 +174,7 @@ function HistoryOrder({ data, icon }) {
           className={cx('btn')}
           blue
         >
-          Chi tiết
+          詳細
         </Button>
       </div>
     );
@@ -189,7 +189,7 @@ function HistoryOrder({ data, icon }) {
           className={cx('btn')}
           blue
         >
-          Chi tiết
+          詳細
         </Button>
       </div>
     );
@@ -204,7 +204,7 @@ function HistoryOrder({ data, icon }) {
           className={cx('btn')}
           blue
         >
-          Chi tiết
+          詳細
         </Button>
       </div>
     );
@@ -219,7 +219,7 @@ function HistoryOrder({ data, icon }) {
           className={cx('btn')}
           blue
         >
-          Chi tiết
+          詳細
         </Button>
       </div>
     );
@@ -249,14 +249,14 @@ function HistoryOrder({ data, icon }) {
       />
       <div className={cx('day-order')}>{formattedDate}</div>
       <div className={cx('address')}>{data.payment ? data.payment.paymentMethod : ''}</div>
-      <div className={cx('address')}>{data.payment?.isPaid ? 'Đã thanh toán' : 'Chưa thanh toán'}</div>
+      <div className={cx('address')}>{data.payment?.isPaid ? '已支付' : '未支付'}</div>
       <div className={cx('address')}>{data.order_address}</div>
       <div className={cx('price-order')}>{data.totalPrice && formatCurrency(data.totalPrice)}</div>
       {buttonComponent}
 
       <Popup isOpen={isModalOpen} onRequestClose={() => closeModalPending()} width={'700px'} height={'500px'}>
         <animated.div style={modalAnimation}>
-          <h2>Thông tin chi  tiết</h2>
+          <h2>詳細情報</h2>
           {orderList.length > 0 &&
             orderList.map((orderItem) => {
               return (
@@ -264,22 +264,22 @@ function HistoryOrder({ data, icon }) {
                   <Image className={cx('detail-image')} src={orderItem.image} alt="avatar"></Image>
 
                   <div className={cx('detail-item')}>
-                    <label className={cx('detail-label')}>Tên:</label>
+                    <label className={cx('detail-label')}>商品名:</label>
                     <div className={cx('detail-value')}>{orderItem.name}</div>
                   </div>
 
                   <div className={cx('detail-item')}>
-                    <label className={cx('detail-label')}>Số lượng:</label>
+                    <label className={cx('detail-label')}>数量:</label>
                     <div className={cx('detail-value')}>{orderItem.order_item_infor.quantity}</div>
                   </div>
 
                   <div className={cx('detail-item')}>
-                    <label className={cx('detail-label')}>Giá:</label>
+                    <label className={cx('detail-label')}>価格:</label>
                     <div className={cx('detail-value')}>{orderItem.price && formatCurrency(data.totalPrice)}</div>
                   </div>
 
                   <Button to={`/detailItem/${orderItem.id}`} white className={cx('btn')}>
-                    Xem sản phẩm
+                    商品を見る
                   </Button>
                 </div>
               );
@@ -294,7 +294,7 @@ function HistoryOrder({ data, icon }) {
         height={'500px'}
       >
         <animated.div style={modalAnimationSuccessfully}>
-          <h2>Thông tin chi tiết</h2>
+          <h2>詳細情報</h2>
           {orderList.length > 0 &&
             orderList.map((orderItem) => {
               return (
@@ -302,17 +302,17 @@ function HistoryOrder({ data, icon }) {
                   <Image className={cx('detail-image')} src={orderItem.image} alt="avatar"></Image>
 
                   <div className={cx('detail-item')}>
-                    <label className={cx('detail-label')}>Tên:</label>
+                    <label className={cx('detail-label')}>商品名:</label>
                     <div className={cx('detail-value')}>{orderItem.name}</div>
                   </div>
 
                   <div className={cx('detail-item')}>
-                    <label className={cx('detail-label')}>Số lượng:</label>
+                    <label className={cx('detail-label')}>数量:</label>
                     <div className={cx('detail-value')}>{orderItem.order_item_infor.quantity}</div>
                   </div>
 
                   <div className={cx('detail-item')}>
-                    <label className={cx('detail-label')}>Giá:</label>
+                    <label className={cx('detail-label')}>価格:</label>
                     <div className={cx('detail-value')}>{orderItem.price && formatCurrency(data.totalPrice)}</div>
                   </div>
 
@@ -326,15 +326,15 @@ function HistoryOrder({ data, icon }) {
                       blue
                       className={cx('btn')}
                     >
-                      Đánh giá
+                      評価
                     </Button>
                   ) : (
                     <Button disabled blue className={cx('btn')}>
-                      Đã đánh giá
+                      評価済み
                     </Button>
                   )}
                   <Button to={`/detailItem/${orderItem.id}`} white className={cx('btn')}>
-                    Mua lại
+                    再購入
                   </Button>
                 </div>
               );
@@ -344,15 +344,15 @@ function HistoryOrder({ data, icon }) {
 
       <Popup isOpen={isModalOpenRating} onRequestClose={() => closeModalRating()} width={'700px'} height={'400px'}>
         <animated.div style={modalAnimationRating}>
-          <h2>Đánh giá</h2>
+          <h2>評価</h2>
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Sao</div>
+            <div className={cx('header')}>評価</div>
             <div className={cx('star')}>
               <Star rating={rating} setRating={setRating} isUpdate={true}></Star>
             </div>
           </div>
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Nhập đánh giá</div>
+            <div className={cx('header')}>評価を入力</div>
             <InputForm
               placeholder=""
               type="text"
@@ -366,7 +366,7 @@ function HistoryOrder({ data, icon }) {
 
           <div className={cx('options1')}>
             <Button onClick={() => handleRating(idProduct, idOrder, rating, payload.comment)} primary>
-              Xác nhận
+              確認
             </Button>
           </div>
         </animated.div>

@@ -33,7 +33,7 @@ const AddBlog = () => {
     console.log(thumbnail);
     await axios
       .post(
-        'https://2hm-store.click/api/post/add',
+        'http://localhost:8000/api/post/add',
         {
           title: title,
           thumbnail: thumbnail,
@@ -72,7 +72,7 @@ const AddBlog = () => {
         theme="light"
       />
       <div className={cx('formGroup')}>
-        <label htmlFor="title">Tiêu đề:</label>
+        <label htmlFor="title">タイトル:</label>
         <input
           id="title"
           className={cx('formControl')}
@@ -92,7 +92,7 @@ const AddBlog = () => {
         />
       </div>
       <div className={cx('formGroup')}>
-        <label htmlFor="content">Nội dung:</label>
+        <label htmlFor="content">内容:</label>
         <ReactQuill
           id="content"
           className="quillEditor"
@@ -101,11 +101,11 @@ const AddBlog = () => {
         />
       </div>
       <button className={cx('submitButton')} onClick={() => window.location.replace(config.routes.manageBlog)}>
-        Quay lại
+        戻る
       </button>
 
       <button className={cx('submitButton')} onClick={handleSubmit}>
-        Đăng bài
+        投稿する
       </button>
       
     </div>

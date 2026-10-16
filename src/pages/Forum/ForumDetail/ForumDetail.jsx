@@ -23,7 +23,7 @@ function DetailForum() {
   useEffect(() => {
     const fetchForumDetails = async () => {
       try {
-        const forumResponse = await axios.get(`https://2hm-store.click/api/post/forum/${id}`, {
+        const forumResponse = await axios.get(`http://localhost:8000/api/post/forum/${id}`, {
           headers: { Authorization: `Bearer ${GetToken()}` },
         });
         setForum(forumResponse.data.result);
@@ -41,7 +41,7 @@ function DetailForum() {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get('https://2hm-store.click/api/post/forum');
+      const response = await axios.get('http://localhost:8000/api/post/forum');
       if (response.data.success && Array.isArray(response.data.result)) {
         setData(response.data.result);
       }
@@ -67,7 +67,7 @@ function DetailForum() {
 
     try {
       const response = await axios.post(
-        `https://2hm-store.click/api/post/forum/comment`,
+        `http://localhost:8000/api/post/forum/comment`,
         {
           content: newComment,
           id_post: id,
@@ -171,14 +171,14 @@ function DetailForum() {
               required
             />
             <button type="submit" className={cx('commentButton')}>
-              Bình luận
+              コメント
             </button>
           </form>
         </div>
       </div>
 
       <div className={cx('forumContainerRencent')}>
-        <h3 className={cx('rencent')}>Bài viết gần đây</h3>
+        <h3 className={cx('rencent')}>最近の投稿</h3>
         {recentPosts.map((post, index) => (
           <div key={index} className={cx('forumPostRencent')}>
             <div className={cx('forumPostLeftRencent')}>
@@ -219,8 +219,8 @@ function DetailForum() {
             </div>
             <div className={cx('forumPostRightRencent')}>
               <div className={cx('forumMetaRencent')}>
-                <div>Trả lời: {post.replyNum}</div>
-                <div>Lượt xem: {post.view}</div>
+                <div>返信: {post.replyNum}</div>
+                <div>閲覧数: {post.view}</div>
               </div>
               <div className={cx('forumDateTimeRencent')}>{new Date(post.createdAt).toLocaleString()}</div>
             </div>

@@ -26,7 +26,7 @@ function AppointmentPending() {
   };
   useEffect(() => {
     const getApiAppointmentList = async () => {
-      const response = await axios.get('https://2hm-store.click/api/appointment/1', {
+      const response = await axios.get('http://localhost:8000/api/appointment/1', {
         headers: { Authorization: `Bearer ${GetToken()}` },
       });
       startTransition(() => {
@@ -50,7 +50,7 @@ function AppointmentPending() {
       <MenuAppointment />
       </Suspense>
       <div className={cx('header-content')}>
-        <span className={cx('title-content')}>Cuộc hẹn đang chờ xử lý</span>
+        <span className={cx('title-content')}>処理待ちの予約</span>
       </div>
       <div className={cx('order-list')}>
       {appointmentList &&

@@ -9,7 +9,7 @@ function Contact() {
     <div className={cx('wrapper')}>
       <div className={cx('contact-container')}>
         <div className={cx('breadcrumb')}>
-          <a href="/">Trang chủ </a>/<span>Liên hệ</span>
+          <a href="/">ホーム </a>/<span>お問い合わせ</span>
         </div>
         <div className={cx('info-section')}>
           <div className={cx('info-item')}>
@@ -17,7 +17,7 @@ function Contact() {
               <i className="fas fa-phone-alt"></i>
             </div>
             <div className={cx('info')}>
-              <h3>Hỗ trợ tư vấn</h3>
+              <h3>ご相談・お問い合わせ</h3>
               <p>0379289021</p>
             </div>
           </div>

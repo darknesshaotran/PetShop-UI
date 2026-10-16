@@ -29,7 +29,7 @@ function OrderPending() {
   };
   useEffect(() => {
     const getApiOrderList = async () => {
-      const response = await axios.get('https://2hm-store.click/api/order/All/status/1', {
+      const response = await axios.get('http://localhost:8000/api/order/All/status/1', {
         headers: { Authorization: `Bearer ${GetToken()}` },
       });
       setOrderList(response.data.result);
@@ -41,7 +41,7 @@ function OrderPending() {
     <div className={cx('content')}>
   <Menu />
   <div className={cx('header-content')}>
-    <span className={cx('title-content')}>Đơn hàng đang chờ xử lý</span>
+    <span className={cx('title-content')}>処理待ちの注文</span>
   </div>
   <table className={cx('order-table')}>
     {/* <thead className={cx('order-header')}>

@@ -32,7 +32,7 @@ function MenuOrder() {
   }
   useEffect(() => {
     const getApiOrderPending = async () => {
-      const response = await axios.get('https://2hm-store.click/api/order/All/status/1', {
+      const response = await axios.get('http://localhost:8000/api/order/All/status/1', {
         headers: {
           Authorization: `Bearer ${getJwtFromCookie()}`,
         },
@@ -40,7 +40,7 @@ function MenuOrder() {
       setCountPending(response.data.result.length);
     };
     const getApiOrderPreparing = async () => {
-      const response = await axios.get('https://2hm-store.click/api/order/All/status/2', {
+      const response = await axios.get('http://localhost:8000/api/order/All/status/2', {
         headers: {
           Authorization: `Bearer ${getJwtFromCookie()}`,
         },
@@ -48,7 +48,7 @@ function MenuOrder() {
       setCountPreparing(response.data.result.length);
     };
     const getApiOrderDelivering = async () => {
-      const response = await axios.get('https://2hm-store.click/api/order/All/status/3', {
+      const response = await axios.get('http://localhost:8000/api/order/All/status/3', {
         headers: {
           Authorization: `Bearer ${getJwtFromCookie()}`,
         },
@@ -56,7 +56,7 @@ function MenuOrder() {
       setCountDelivering(response.data.result.length);
     };
     const getApiOrderSuccess = async () => {
-      const response = await axios.get('https://2hm-store.click/api/order/All/status/4', {
+      const response = await axios.get('http://localhost:8000/api/order/All/status/4', {
         headers: {
           Authorization: `Bearer ${getJwtFromCookie()}`,
         },
@@ -74,28 +74,28 @@ function MenuOrder() {
         <FontAwesomeIcon className={cx('bx')} icon={faHourglassHalf}></FontAwesomeIcon>
         <span className={cx('text')}>
           <h3>{countPending}</h3>
-          <p>Đơn hàng đang chờ xử lý</p>
+          <p>処理待ちの注文</p>
         </span>
       </li>
       <li onClick={() => window.location.replace(config.routes.adminWaiting)}>
         <FontAwesomeIcon className={cx('bx')} icon={faStopwatch}></FontAwesomeIcon>
         <span className={cx('text')}>
           <h3>{countPreparing}</h3>
-          <p>Đơn hàng đang chuẩn bị</p>
+          <p>処理中の注文</p>
         </span>
       </li>
       <li onClick={() => window.location.replace(config.routes.adminDelivering)}>
         <FontAwesomeIcon className={cx('bx')} icon={faTruck}></FontAwesomeIcon>
         <span className={cx('text')}>
           <h3>{countDelivering}</h3>
-          <p>Đơn hàng đang được giao</p>
+          <p>配送中の注文</p>
         </span>
       </li>
       <li onClick={() => window.location.replace(config.routes.adminSuccess)}>
         <FontAwesomeIcon className={cx('bx')} icon={faCheckCircle}></FontAwesomeIcon>
         <span className={cx('text')}>
           <h3>{countSuccess}</h3>
-          <p>Đơn hàng đã giao thành công</p>
+          <p>完了した注文</p>
         </span>
       </li>
     </ul>

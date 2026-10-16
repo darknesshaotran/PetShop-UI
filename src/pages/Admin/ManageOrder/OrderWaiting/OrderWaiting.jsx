@@ -16,7 +16,7 @@ function OrderWaiting() {
 
   useEffect(() => {
     const getApiOrderPending = async () => {
-      const response = await axios.get('https://2hm-store.click/api/order/All/status/2', {
+      const response = await axios.get('http://localhost:8000/api/order/All/status/2', {
         headers: { Authorization: `Bearer ${GetToken()}` },
       });
       setOrderList(response.data.result);
@@ -28,7 +28,7 @@ function OrderWaiting() {
     <div className={cx('content')}>
       <Menu />
       <div className={cx('header-content')}>
-        <span className={cx('title-content')}>Đơn hàng đang chuẩn bị</span>
+        <span className={cx('title-content')}>処理中の注文</span>
       </div>
       <div className={cx('order-list')}>
         {orderList.map((order) => {

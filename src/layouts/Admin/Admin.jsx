@@ -14,7 +14,7 @@ function Admin({ children }) {
   const [infor, setInfor] = useState({});
 
   useEffect(() => {
-    fetch('https://2hm-store.click/api/user/profile/me', {
+    fetch('http://localhost:8000/api/user/profile/me', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${GetToken()}`, // trả token về server để xử lí
@@ -41,7 +41,7 @@ function Admin({ children }) {
             Day {currentDate.getDate()} Month {currentDate.getMonth() + 1} Year {currentDate.getFullYear()}
           </span>
           <span className={cx('name')}>
-            Hi, {infor.inforUser && infor.inforUser.firstname + ' ' + infor.inforUser.lastname}
+            こんにちは、 {infor.inforUser && infor.inforUser.firstname + ' ' + infor.inforUser.lastname}
           </span>
         </div>
         {children}

@@ -54,19 +54,19 @@ function ManageProducts() {
     const errors = {};
 
     if (!payloadUpdate.name.trim()) {
-      errors.name = 'Hãy nhập tên loài';
+      errors.name = '種名を入力してください';
       isValid = false;
     }
     if (!payloadUpdate.amount.toString().trim()) {
-      errors.amount = 'Hãy nhập số lượng';
+      errors.amount = '数量を入力してください';
       isValid = false;
     }
     if (!payloadUpdate.import_price.toString().trim()) {
-      errors.price = 'Hãy nhập giá nhập';
+      errors.import_price = '仕入れ価格を入力してください';
       isValid = false;
     }
     if (!payloadUpdate.price.toString().trim()) {
-      errors.price = 'Hãy nhập giá bán';
+      errors.price = '販売価格を入力してください';
       isValid = false;
     }
     setErrorMessages(errors);
@@ -77,7 +77,7 @@ function ManageProducts() {
     let isValid = true;
     const errors = {};
     if (!payloadUpdate.amount.toString().trim()) {
-      errors.amount = 'Hãy nhập số lượng';
+      errors.amount = '数量を入力してください';
       isValid = false;
     }
     setErrorMessages(errors);
@@ -90,7 +90,7 @@ function ManageProducts() {
 
   const getProduct = async () => {
     try {
-      const response = await axios.get('https://2hm-store.click/api/product?limit=10000');
+      const response = await axios.get('http://localhost:8000/api/product?limit=10000');
       setProducts(response.data.result);
       setfilteredProducts(response.data.result);
     } catch (e) {
@@ -101,7 +101,7 @@ function ManageProducts() {
   const fetchApiDetailProduct = async (id) => {
     try {
       setIsModalOpenUpdate(true);
-      const response = await axios.get(`https://2hm-store.click/api/product/${id}`);
+      const response = await axios.get(`http://localhost:8000/api/product/${id}`);
       const product = response.data.result;
       setPayloadUpdate((prevPayload) => ({
         ...prevPayload,
@@ -117,7 +117,7 @@ function ManageProducts() {
   };
 
   const fetchApiBreeds = async () => {
-    const response = await axios.get('https://2hm-store.click/api/breed');
+    const response = await axios.get('http://localhost:8000/api/breed');
     const breedsData = await response.data.breeds;
     setBreeds(breedsData);
   };
@@ -125,7 +125,7 @@ function ManageProducts() {
   const handleAddProduct = async (image, name, id_breed, amount, import_price, price) => {
     await axios
       .post(
-        'https://2hm-store.click/api/product/add',
+        'http://localhost:8000/api/product/add',
         {
           image: image,
           name: name,
@@ -158,7 +158,7 @@ function ManageProducts() {
     } else {
       await axios
         .put(
-          `https://2hm-store.click/api/product/updateInfor/${productId}`,
+          `http://localhost:8000/api/product/updateInfor/${productId}`,
           {
             name: name,
             amount: amount,
@@ -189,7 +189,7 @@ function ManageProducts() {
     } else {
       await axios
         .put(
-          `https://2hm-store.click/api/product/updateInfor/${productId}`,
+          `http://localhost:8000/api/product/updateInfor/${productId}`,
           {
             amount: amount,
           },
@@ -217,7 +217,7 @@ function ManageProducts() {
     } else {
       await axios
         .put(
-          `https://2hm-store.click/api/product/updateImages/${productId}`,
+          `http://localhost:8000/api/product/updateImages/${productId}`,
           {
             image: image,
           },
@@ -242,7 +242,7 @@ function ManageProducts() {
 
   const handleDeleteProduct = async (id) => {
     await axios
-      .delete(`https://2hm-store.click/api/product/delete/${id}`, {
+      .delete(`http://localhost:8000/api/product/delete/${id}`, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${GetToken()}`,
@@ -317,37 +317,37 @@ function ManageProducts() {
 
   const columns = [
     {
-      name: 'Ảnh',
+      name: '画像',
       selector: (row) => row.image,
       cell: (row) => <img src={row.image} alt={row.name} width="100px" height="100px" />,
     },
     {
-      name: 'Tên',
+      name: '商品名',
       selector: (row) => row.name,
       sortable: true,
     },
     {
-      name: 'Chủng loài',
+      name: '種類',
       selector: (row) => row.Breed.name,
       sortable: true,
     },
     {
-      name: 'Số lượng',
+      name: '数量',
       selector: (row) => row.amount,
       sortable: true,
     },
     {
-      name: 'Giá nhập',
+      name: '仕入れ価格',
       selector: (row) => row.import_price,
       sortable: true,
     },
     {
-      name: 'Giá bán',
+      name: '販売価格',
       selector: (row) => row.price,
       sortable: true,
     },
     {
-      name: 'Nhập hàng',
+      name: '在庫追加',
       sbutton: true,
       cell: (row) => (
         <Button
@@ -355,7 +355,7 @@ function ManageProducts() {
           className={cx('btn')}
           blue
         >
-          Nhập hàng
+          在庫追加
         </Button>
       ),
     },
@@ -393,7 +393,7 @@ function ManageProducts() {
         theme="light"
       />
       <DataTable
-        title="Danh sách sản phẩm"
+        title="商品リスト"
         columns={columns}
         data={filteredProducts}
         fixedHeader
@@ -406,11 +406,11 @@ function ManageProducts() {
         subHeaderComponent={
           <div className={cx('wrapper-header')} style={{ zIndex: 0 }}>
             <Button onClick={openModalAdd} leftIcon={<FontAwesomeIcon icon={faPlus} />} blue>
-              Add Product
+              商品追加
             </Button>
             <input
               type="text"
-              placeholder="Tìm kiếm sản phẩm"
+              placeholder="商品を検索"
               className={cx('search')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -430,12 +430,12 @@ function ManageProducts() {
         className={cx('popup')}
       >
         <animated.div style={modalAnimationAdd}>
-          <h2>Thêm sản phẩm</h2>
+          <h2>商品追加</h2>
 
-          <div className={cx('header')}>Ảnh</div>
+          <div className={cx('header')}>画像</div>
           <div className={cx('input-field')}>
             <div className={cx('upload-field')}>
-              {avatar && <img src={image} className={cx('image')} alt="Ảnh" />}
+              {avatar && <img src={image} className={cx('image')} alt="画像" />}
               <label htmlFor="file-upload" className={cx('upload-btn')}>
                 <FontAwesomeIcon icon={faUpload}></FontAwesomeIcon>
                 <input id="file-upload" type="file" onChange={handleImgChange}></input>
@@ -444,7 +444,7 @@ function ManageProducts() {
           </div>
 
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Tên</div>
+            <div className={cx('header')}>商品名</div>
             <InputForm
               placeholder="Nhập tên..."
               type="text"
@@ -456,14 +456,14 @@ function ManageProducts() {
             />
           </div>
 
-          <div className={cx('header')}>Chọn chủng loài</div>
+          <div className={cx('header')}>種類を選択</div>
           <div className={cx('input-field')}>
             <CustomSelect data={breeds} setId={setSelectedBreedId}></CustomSelect>
             {/* {errorMessages.category && <div className={cx('error-message')}>{errorMessages.category}</div>} */}
           </div>
 
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Số lượng</div>
+            <div className={cx('header')}>数量</div>
             <InputForm
               placeholder="Nhập số lượng..."
               type="text"
@@ -476,7 +476,7 @@ function ManageProducts() {
           </div>
 
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Giá nhập</div>
+            <div className={cx('header')}>仕入れ価格</div>
             <InputForm
               placeholder="Nhập giá nhập..."
               type="text"
@@ -489,7 +489,7 @@ function ManageProducts() {
           </div>
 
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Giá bán</div>
+            <div className={cx('header')}>販売価格</div>
             <InputForm
               placeholder="Nhập giá bán..."
               type="text"
@@ -523,25 +523,25 @@ function ManageProducts() {
 
       <Popup isOpen={isModalOpenUpdate} onRequestClose={() => closeModalUpdate()} width={'700px'} height={'700px'}>
         <animated.div style={modalAnimationUpdate}>
-          <h2>Thông tin sản phẩm</h2>
-          <div className={cx('header')}>Ảnh</div>
+          <h2>商品情報</h2>
+          <div className={cx('header')}>画像</div>
           <div className={cx('input-field')}>
             <div className={cx('upload-field')}>
-              {avatar && <img src={image} className={cx('image')} alt="Ảnh" />}
+              {avatar && <img src={image} className={cx('image')} alt="画像" />}
               <label htmlFor="file-upload" className={cx('upload-btn')}>
                 <FontAwesomeIcon icon={faUpload}></FontAwesomeIcon>
                 <input id="file-upload" type="file" onChange={handleImgChange}></input>
               </label>
             </div>
             <Button onClick={() => handleUpdateImage(avatar)} outline>
-              Thay đổi ảnh
+              画像を変更
             </Button>
           </div>
 
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Tên</div>
+            <div className={cx('header')}>商品名</div>
             <InputForm
-              placeholder="Nhập tên..."
+              placeholder="商品名を入力..."
               type="text"
               value={payloadUpdate.name}
               setValue={setPayloadUpdate}
@@ -553,9 +553,9 @@ function ManageProducts() {
           </div>
 
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Số lượng</div>
+            <div className={cx('header')}>数量</div>
             <InputForm
-              placeholder="Nhập số lượng..."
+              placeholder="数量を入力..."
               type="text"
               value={payloadUpdate.amount}
               setValue={setPayloadUpdate}
@@ -567,9 +567,9 @@ function ManageProducts() {
           </div>
 
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Giá nhập</div>
+            <div className={cx('header')}>仕入れ価格</div>
             <InputForm
-              placeholder="Nhập giá nhập..."
+              placeholder="仕入れ価格を入力..."
               type="text"
               value={payloadUpdate.import_price}
               setValue={setPayloadUpdate}
@@ -581,9 +581,9 @@ function ManageProducts() {
           </div>
 
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Giá bán</div>
+            <div className={cx('header')}>販売価格</div>
             <InputForm
-              placeholder="Nhập giá bán..."
+              placeholder="販売価格を入力..."
               type="text"
               value={payloadUpdate.price}
               setValue={setPayloadUpdate}
@@ -606,10 +606,10 @@ function ManageProducts() {
               }
               outline
             >
-              Thay đổi thông tin
+              情報変更
             </Button>
             <Button onClick={() => handleDeleteProduct(productId)} primary>
-              Xóa
+              削除
             </Button>
           </div>
         </animated.div>
@@ -622,23 +622,23 @@ function ManageProducts() {
         height={'430px'}
       >
         <animated.div style={modalAnimationWareHouse}>
-          <h2>Nhập hàng</h2>
+          <h2>入荷</h2>
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Tên sản phẩm: {payloadUpdate.name}</div>
+            <div className={cx('header')}>商品名: {payloadUpdate.name}</div>
           </div>
 
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Số lượng còn: {payloadUpdate.amount}</div>
+            <div className={cx('header')}>在庫数量: {payloadUpdate.amount}</div>
           </div>
 
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Số lượng đã bán: {payloadUpdate.soldProductNum}</div>
+            <div className={cx('header')}>販売数量: {payloadUpdate.soldProductNum}</div>
           </div>
 
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Số lượng nhập thêm</div>
+            <div className={cx('header')}>入荷数量</div>
             <InputForm
-              placeholder="Nhập số lượng..."
+              placeholder="入荷数量を入力..."
               type="text"
               value={payloadUpdate.quantity}
               setValue={setPayloadUpdate}
@@ -654,7 +654,7 @@ function ManageProducts() {
               onClick={() => handleQuantityProduct(Number(payloadUpdate.amount) + Number(payloadUpdate.quantity))}
               blue
             >
-              Thay đổi thông tin
+              情報変更
             </Button>
           </div>
         </animated.div>

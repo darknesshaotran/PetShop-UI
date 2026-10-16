@@ -18,7 +18,7 @@ const ProfileCard = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get(`https://2hm-store.click/api/user/profile/${id}`);
+        const response = await axios.get(`http://localhost:8000/api/user/profile/${id}`);
         console.log('response hú hú: ' + JSON.stringify(response));
         if (response.data.success && response.data.user) {
           setData(response.data.user);
@@ -36,7 +36,7 @@ const ProfileCard = () => {
   const handleSendMessage = async (message, chatUserId) => {
     await axios
       .post(
-        `https://2hm-store.click/api/message`,
+        `http://localhost:8000/api/message`,
         {
           content: message,
           id_reciever: chatUserId,
@@ -89,19 +89,19 @@ const ProfileCard = () => {
         <h2>{data.inforUser.firstname + ' ' + data.inforUser.lastname}</h2>
         <div className={cx('epj')}>
           <p className={cx('email')}>Email: {data.email}</p>
-          <p className={cx('phone')}>Số điện thoại: {data.inforUser.phoneNumber}</p>
-          <p className={cx('join-date')}>Tham gia vào: {data.createdAt}</p>
+          <p className={cx('phone')}>電話番号: {data.inforUser.phoneNumber}</p>
+          <p className={cx('join-date')}>参加日: {data.createdAt}</p>
         </div>
         <div className={cx('points')}>
           <div className={cx('point-label')}>
             <i className={cx('icon')}>&#x1F4B0;</i>
-            <span>Điểm</span>
+            <span>ポイント</span>
           </div>
           <div className={cx('point-value')}>{data.point}</div>
         </div>
         <input
           type="text"
-          placeholder="Gửi tin nhắn......"
+          placeholder="メッセージを入力......"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           className={cx('message-input')}
@@ -112,7 +112,7 @@ const ProfileCard = () => {
           }}
         />
         <button className={cx('send-message')} onClick={() => handleSendMessage(newMessage, id)}>
-          Nhắn tin
+          メッセージを送信
         </button>
       </div>
     </>

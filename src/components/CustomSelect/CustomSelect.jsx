@@ -33,7 +33,7 @@ const CustomSelect = ({ data, setId }) => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className={cx('search-input')}
-            placeholder="Tìm kiếm ..."
+            placeholder="検索 ..."
           />
           {filteredData &&
             filteredData.map((data) => (

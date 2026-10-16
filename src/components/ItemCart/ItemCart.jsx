@@ -22,7 +22,7 @@ function ItemCart({ data, onSelect, isCheckoutPage, onQuantityChange }) {
 
   const handleDeleteCart = async () => {
     await axios
-      .delete(`https://2hm-store.click/api/cart/delete/${data.cart_item_infor.id}`, {
+      .delete(`http://localhost:8000/api/cart/delete/${data.cart_item_infor.id}`, {
         headers: { Authorization: `Bearer ${GetToken()}` },
       })
       .then((response) => {
@@ -69,7 +69,7 @@ function ItemCart({ data, onSelect, isCheckoutPage, onQuantityChange }) {
   async function updateQuantity(id_cartItem, quantity) {
     await axios
       .put(
-        `https://2hm-store.click/api/cart/updateQuantity/${id_cartItem}`,
+        `http://localhost:8000/api/cart/updateQuantity/${id_cartItem}`,
         {
           quantity: quantity,
         },
@@ -117,7 +117,7 @@ function ItemCart({ data, onSelect, isCheckoutPage, onQuantityChange }) {
           <div className={cx('content-right')}>
             <div className={cx('options')}>
               <Button onClick={() => handleDeleteCart()} outline className={cx('btn')}>
-                Xóa
+                削除
               </Button>
             </div>
             <div className={cx('product-quantity')}>

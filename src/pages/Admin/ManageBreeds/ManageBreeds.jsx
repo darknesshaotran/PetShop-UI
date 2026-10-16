@@ -59,7 +59,7 @@ function ManageBreeds() {
 
   const getBreed = async () => {
     try {
-      const response = await axios.get('https://2hm-store.click/api/breed?limit=10000');
+      const response = await axios.get('http://localhost:8000/api/breed?limit=10000');
       setBreeds(response.data.breeds);
       setFilteredBreeds(response.data.breeds);
       // console.log("respone 1 ne",response);
@@ -71,7 +71,7 @@ function ManageBreeds() {
   const fetchApiDetailBreed = async (id) => {
     try {
       setIsModalOpenUpdate(true);
-      const response = await axios.get(`https://2hm-store.click/api/breed/${id}`);
+      const response = await axios.get(`http://localhost:8000/api/breed/${id}`);
       const breed = response.data.breedDetail;
       // console.log('respone detail breed ne', response);
       // console.log('breed nè hehe', breed);
@@ -89,7 +89,7 @@ function ManageBreeds() {
   const handleAddbreed = async (image, name, description) => {
     await axios
       .post(
-        'https://2hm-store.click/api/breed/add',
+        'http://localhost:8000/api/breed/add',
         {
           image: image,
           name: name,
@@ -119,7 +119,7 @@ function ManageBreeds() {
     } else {
       await axios
         .put(
-          `https://2hm-store.click/api/breed/updateInfor/${breedId}`,
+          `http://localhost:8000/api/breed/updateInfor/${breedId}`,
           {
             name: name,
             description: description,
@@ -149,7 +149,7 @@ function ManageBreeds() {
     } else {
       await axios
         .put(
-          `https://2hm-store.click/api/breed/updateImage/${breedId}`,
+          `http://localhost:8000/api/breed/updateImage/${breedId}`,
           {
             image: image,
           },
@@ -174,7 +174,7 @@ function ManageBreeds() {
 
   const handleDeleteBreed = async (id) => {
     await axios
-      .delete(`https://2hm-store.click/api/breed/delete/${id}`, {
+      .delete(`http://localhost:8000/api/breed/delete/${id}`, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${GetToken()}`,
@@ -308,9 +308,9 @@ function ManageBreeds() {
 
       <Popup isOpen={isModalOpenUpdate} onRequestClose={() => closeModalUpdate()} width={'700px'} height={'700px'}>
         <animated.div style={modalAnimationUpdate}>
-          <h2>Thông tin chủng loài</h2>
+          <h2>書類情報</h2>
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Ảnh</div>
+            <div className={cx('header')}>画像</div>
             <div className={cx('input-field')}>
               <div className={cx('upload-field')}>
                 {avatar && <img src={image} className={cx('image')} alt="Ảnh" />}
@@ -320,10 +320,10 @@ function ManageBreeds() {
                 </label>
               </div>
               <Button onClick={() => handleUpdateImage(avatar)} outline>
-                Thay đổi ảnh
+                画像を変更
               </Button>
             </div>
-            <div className={cx('header')}>Tên</div>
+            <div className={cx('header')}>書類名</div>
             <InputForm
               placeholder="Nhập tên..."
               type="text"
@@ -336,7 +336,7 @@ function ManageBreeds() {
             {errorMessages.name && <div className={cx('error-message')}>{errorMessages.name}</div>}
           </div>
 
-          <div className={cx('header')}>Description</div>
+          <div className={cx('header')}>書類説明</div>
           <div className={cx('input-field')}>
             <InputForm
               placeholder="Enter breed description..."
@@ -352,10 +352,10 @@ function ManageBreeds() {
 
           <div className={cx('options')}>
             <Button onClick={() => handleUpdatebreed(payloadUpdate.name, payloadUpdate.description)} outline>
-              Thay đổi thông tin
+              情報を変更
             </Button>
             <Button onClick={() => handleDeleteBreed(breedId)} primary>
-              Xóa
+              削除
             </Button>
           </div>
         </animated.div>
@@ -369,12 +369,12 @@ function ManageBreeds() {
         className={cx('popup')}
       >
         <animated.div style={modalAnimationAdd}>
-          <h2>Thêm chủng loài</h2>
+          <h2>新しい品種を追加</h2>
 
-          <div className={cx('header')}>Ảnh</div>
+          <div className={cx('header')}>画像</div>
           <div className={cx('input-field')}>
             <div className={cx('upload-field')}>
-              {avatar && <img src={image} className={cx('image')} alt="Ảnh" />}
+              {avatar && <img src={image} className={cx('image')} alt="画像" />}
               <label htmlFor="file-upload" className={cx('upload-btn')}>
                 <FontAwesomeIcon icon={faUpload}></FontAwesomeIcon>
                 <input id="file-upload" type="file" onChange={handleImgChange}></input>
@@ -383,9 +383,9 @@ function ManageBreeds() {
           </div>
 
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Tên</div>
+            <div className={cx('header')}>書類名</div>
             <InputForm
-              placeholder="Nhập tên..."
+              placeholder="Enter breed name..."
               type="text"
               value={payloadUpdate.name}
               setValue={setPayloadAddBreed}
@@ -395,10 +395,10 @@ function ManageBreeds() {
             />
           </div>
 
-          <div className={cx('header')}>Mô tả</div>
+          <div className={cx('header')}>書類説明</div>
           <div className={cx('input-field')}>
             <InputForm
-              placeholder="Nhập mô tả..."
+              placeholder="Enter breed description..."
               type="text"
               value={payloadUpdate.description}
               setValue={setPayloadAddBreed}
@@ -410,7 +410,7 @@ function ManageBreeds() {
 
           <div className={cx('options')}>
             <Button onClick={() => handleAddbreed(avatar, payloadAddBreed.name, payloadAddBreed.description)} outline>
-              Xác nhận
+              追加
             </Button>
           </div>
         </animated.div>

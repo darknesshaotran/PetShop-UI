@@ -23,7 +23,7 @@ function Search() {
       return;
     }
     const fetchApi = async () => {
-      const response = await axios.get(`https://2hm-store.click/api/products?search=${searchValue}&limit=5`);
+      const response = await axios.get(`http://localhost:8000/api/products?search=${searchValue}&limit=5`);
       setSearchResult(response.data.result);
     };
 
@@ -55,7 +55,7 @@ function Search() {
     const formData = new FormData();
     formData.append('file', file);
     try {
-      const breedResponse = await axios.get('https://2hm-store.click/api/breed/');
+      const breedResponse = await axios.get('http://localhost:8000/api/breed/');
       const breeds = breedResponse.data.breeds;
       const response = await axios.post('https://2539-2001-ee0-1c30-3846-2c43-3841-d644-6076.ngrok-free.app/predict', formData, {
         headers: {
@@ -83,7 +83,7 @@ function Search() {
       return;
     }
     const fetchApi = async () => {
-      const response = await axios.get(`https://2hm-store.click/api/product?search=${searchValue}&limit=5`);
+      const response = await axios.get(`http://localhost:8000/api/product?search=${searchValue}&limit=5`);
       setSearchResult(response.data.result);
     };
 

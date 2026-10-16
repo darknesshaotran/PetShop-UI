@@ -17,7 +17,7 @@ function HistoryOrderCanceled() {
 
   useEffect(() => {
     const getApiOrderPending = async () => {
-      const response = await axios.get('https://2hm-store.click/api/order/status/5', {
+      const response = await axios.get('http://localhost:8000/api/order/status/5', {
         headers: { Authorization: `Bearer ${GetToken()}` },
       });
       setOrderList(response.data.result);
@@ -36,7 +36,7 @@ function HistoryOrderCanceled() {
           <HistoryMenuOrder />
         </Suspense>
       </div>
-      <span className={cx('title-content')}>Đơn hàng bị hủy</span>
+      <span className={cx('title-content')}>キャンセル済み</span>
       <div className={cx('order-list')}>
         {orderList.map((order) => (
           <Suspense key={order.id} fallback={<div>Loading...</div>}>

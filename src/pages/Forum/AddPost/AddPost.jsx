@@ -29,11 +29,11 @@ const AddPost = () => {
   const handleSubmit = async () => {
     if (!GetToken())
       {
-        toast.error('Vui lòng đăng nhập để thực hiện chức năng này');
+        toast.error('この機能をご利用いただくには、ログインが必要です。');
       }
     await axios
       .post(
-        'https://2hm-store.click/api/post/forum/add',
+        'http://localhost:8000/api/post/forum/add',
         {
           title: title,
           thumbnail: thumbnail,
@@ -73,19 +73,19 @@ const AddPost = () => {
             theme="light"
           />
       <div className={cx('formGroup')}>
-        <label>Tiêu đề:</label>
+        <label>タイトル:</label>
         <input value={title} onChange={handleChangeTitle} type="text" className={cx('formControl')} />
       </div>
       <div className={cx('formGroup')}>
-        <label>Thumbnail URL:</label>
+        <label>サムネイル URL:</label>
         <input value={thumbnail} onChange={handleChangeThumbnail} type="text" className={cx('formControl')} />
       </div>
       <div className={cx('formGroup')}>
-        <label>Nội dung:</label>
+        <label>内容:</label>
         <ReactQuill value={content} onChange={handleChangeContent} className={cx('formControl')} />
       </div>
       <button onClick={handleSubmit} className={cx('submitButton')}>
-        Đăng bài
+        投稿する
       </button>
     </div>
   );

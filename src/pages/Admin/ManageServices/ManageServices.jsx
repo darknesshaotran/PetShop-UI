@@ -44,15 +44,15 @@ function ManageServices() {
     const errors = {};
 
     if (!payloadUpdate.name.trim()) {
-      errors.name = 'Hãy nhập tên dịch vụ';
+      errors.name = 'サービス名を入力してください';
       isValid = false;
     }
     if (!payloadUpdate.description.trim()) {
-      errors.description = 'Hãy nhập mô tả';
+      errors.description = '説明を入力してください';
       isValid = false;
     }
     if (!payloadUpdate.price.toString().trim()) {
-      errors.price = 'Hãy nhập giá';
+      errors.price = '価格を入力してください';
       isValid = false;
     }
 
@@ -65,7 +65,7 @@ function ManageServices() {
 
   const getService = async () => {
     try {
-      const response = await axios.get('https://2hm-store.click/api/service?limit=10000');
+      const response = await axios.get('http://localhost:8000/api/service?limit=10000');
       setServices(response.data.result);
       setFilteredServices(response.data.result);
     } catch (e) {
@@ -75,7 +75,7 @@ function ManageServices() {
   const fetchApiDetailService = async (id) => {
     try {
       setIsModalOpenUpdate(true);
-      const response = await axios.get(`https://2hm-store.click/api/service/${id}`);
+      const response = await axios.get(`http://localhost:8000/api/service/${id}`);
       const service = response.data.result;
       setPayloadUpdate((prevPayload) => ({
         ...prevPayload,
@@ -91,7 +91,7 @@ function ManageServices() {
   const handleAddService = async (image, name, description, price) => {
     await axios
       .post(
-        'https://2hm-store.click/api/service/add',
+        'http://localhost:8000/api/service/add',
         {
           image: image,
           name: name,
@@ -122,7 +122,7 @@ function ManageServices() {
     } else {
       await axios
         .put(
-          `https://2hm-store.click/api/service/updateInfor/${serviceId}`,
+          `http://localhost:8000/api/service/updateInfor/${serviceId}`,
           {
             name: name,
             description: description,
@@ -153,7 +153,7 @@ function ManageServices() {
     } else {
       await axios
         .put(
-          `https://2hm-store.click/api/service/updateImage/${serviceId}`,
+          `http://localhost:8000/api/service/updateImage/${serviceId}`,
           {
             image: image,
           },
@@ -178,7 +178,7 @@ function ManageServices() {
 
   const handleDeleteService = async (id) => {
     await axios
-      .delete(`https://2hm-store.click/api/service/delete/${id}`, {
+      .delete(`http://localhost:8000/api/service/delete/${id}`, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${GetToken()}`,
@@ -286,7 +286,7 @@ function ManageServices() {
         theme="light"
       />
       <DataTable
-        title="Danh sách dịch vụ"
+        title="サービスリスト"
         columns={columns}
         data={filteredServices}
         fixedHeader
@@ -299,11 +299,11 @@ function ManageServices() {
         subHeaderComponent={
           <div className={cx('wrapper-header')} style={{ zIndex: 0 }}>
             <Button onClick={openModalAdd} leftIcon={<FontAwesomeIcon icon={faPlus} />} blue>
-              Thêm dịch vụ
+              サービスを追加
             </Button>
             <input
               type="text"
-              placeholder="Tìm kiếm dịch vụ"
+              placeholder="サービスを検索"
               className={cx('search')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -317,24 +317,24 @@ function ManageServices() {
 
       <Popup isOpen={isModalOpenUpdate} onRequestClose={() => closeModalUpdate()} width={'700px'} height={'700px'}>
         <animated.div style={modalAnimationUpdate}>
-          <h2>Thông tin dịch vụ</h2>
+          <h2>サービス情報</h2>
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Ảnh</div>
+            <div className={cx('header')}>画像</div>
             <div className={cx('input-field')}>
               <div className={cx('upload-field')}>
-                {avatar && <img src={image} className={cx('image')} alt="Ảnh" />}
+                {avatar && <img src={image} className={cx('image')} alt="画像" />}
                 <label htmlFor="file-upload" className={cx('upload-btn')}>
                   <FontAwesomeIcon icon={faUpload}></FontAwesomeIcon>
                   <input id="file-upload" type="file" onChange={handleImgChange}></input>
                 </label>
               </div>
               <Button onClick={() => handleUpdateImage(avatar)} outline>
-                Thay đổi ảnh
+                画像を変更
               </Button>
             </div>
-            <div className={cx('header')}>Tên dịch vụ</div>
+            <div className={cx('header')}>サービス名</div>
             <InputForm
-              placeholder="Nhập tên dịch vụ..."
+              placeholder="サービス名を入力..."
               type="text"
               value={payloadUpdate.name}
               setValue={setPayloadUpdate}
@@ -345,10 +345,10 @@ function ManageServices() {
             {errorMessages.name && <div className={cx('error-message')}>{errorMessages.name}</div>}
           </div>
 
-          <div className={cx('header')}>Mô tả</div>
+          <div className={cx('header')}>説明</div>
           <div className={cx('input-field')}>
             <InputForm
-              placeholder="Nhập mô tả..."
+              placeholder="説明を入力..."
               type="text"
               value={payloadUpdate.description}
               setValue={setPayloadUpdate}
@@ -359,10 +359,10 @@ function ManageServices() {
             {errorMessages.description && <div className={cx('error-message')}>{errorMessages.description}</div>}
           </div>
 
-          <div className={cx('header')}>Giá</div>
+          <div className={cx('header')}>価格</div>
           <div className={cx('input-field')}>
             <InputForm
-              placeholder="Nhập giá dịch vụ..."
+              placeholder="価格を入力..."
               type="text"
               value={payloadUpdate.price}
               setValue={setPayloadUpdate}
@@ -378,10 +378,10 @@ function ManageServices() {
               onClick={() => handleUpdateService(payloadUpdate.name, payloadUpdate.description, payloadUpdate.price)}
               outline
             >
-              Thay đổi thông tin
+              情報を変更
             </Button>
             <Button onClick={() => handleDeleteService(serviceId)} primary>
-              Xóa
+              削除
             </Button>
           </div>
         </animated.div>
@@ -395,12 +395,12 @@ function ManageServices() {
         className={cx('popup')}
       >
         <animated.div style={modalAnimationAdd}>
-          <h2>Thêm dịch vụ</h2>
+          <h2>サービスを追加</h2>
 
-          <div className={cx('header')}>Ảnh</div>
+          <div className={cx('header')}>画像</div>
           <div className={cx('input-field')}>
             <div className={cx('upload-field')}>
-              {avatar && <img src={image} className={cx('image')} alt="Ảnh" />}
+              {avatar && <img src={image} className={cx('image')} alt="画像" />}
               <label htmlFor="file-upload" className={cx('upload-btn')}>
                 <FontAwesomeIcon icon={faUpload}></FontAwesomeIcon>
                 <input id="file-upload" type="file" onChange={handleImgChange}></input>
@@ -409,9 +409,9 @@ function ManageServices() {
           </div>
 
           <div className={cx('input-field')}>
-            <div className={cx('header')}>Tên dịch vụ</div>
+            <div className={cx('header')}>サービス名</div>
             <InputForm
-              placeholder="Nhập tên dịch vụ..."
+              placeholder="サービス名を入力..."
               type="text"
               value={payloadUpdate.name}
               setValue={setpayloadAddService}
@@ -421,10 +421,10 @@ function ManageServices() {
             />
           </div>
 
-          <div className={cx('header')}>Mô tả</div>
+          <div className={cx('header')}>説明</div>
           <div className={cx('input-field')}>
             <InputForm
-              placeholder="Nhập mô tả..."
+              placeholder="説明を入力..."
               type="text"
               value={payloadUpdate.description}
               setValue={setpayloadAddService}
@@ -434,10 +434,10 @@ function ManageServices() {
             />
           </div>
 
-          <div className={cx('header')}>Giá dịch vụ</div>
+          <div className={cx('header')}>価格</div>
           <div className={cx('input-field')}>
             <InputForm
-              placeholder="Nhập giá dịch vụ..."
+              placeholder="価格を入力..."
               type="text"
               value={payloadUpdate.price}
               setValue={setpayloadAddService}
@@ -454,7 +454,7 @@ function ManageServices() {
               }
               outline
             >
-              Xác nhận
+              確認
             </Button>
           </div>
         </animated.div>

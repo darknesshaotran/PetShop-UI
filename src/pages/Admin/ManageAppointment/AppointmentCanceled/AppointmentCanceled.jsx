@@ -15,7 +15,7 @@ function AppointmentCanceled() {
 
   useEffect(() => {
     const getApiAppointmentCanceled = async () => {
-      const response = await axios.get('https://2hm-store.click/api/appointment/5', {
+      const response = await axios.get('http://localhost:8000/api/appointment/5', {
         headers: { Authorization: `Bearer ${GetToken()}` },
       });
       const Appointment = response.data.detailAppointment.map((appointment) => {
@@ -35,7 +35,7 @@ function AppointmentCanceled() {
     <div className={cx('content')}>
       <MenuAppointment />
       <div className={cx('header-content')}>
-        <span className={cx('title-content')}>Cuộc hẹn đã được hủy</span>
+        <span className={cx('title-content')}>キャンセル済みの予約</span>
       </div>
       <div className={cx('order-list')}>
         {orderList.map((order) => {

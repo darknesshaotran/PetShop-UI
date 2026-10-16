@@ -33,7 +33,7 @@ function Header() {
   const getAPIProfiler = async () => {
     console.log('api profile');
     try {
-      const response = await axios.get('https://2hm-store.click/api/user/profile/me', {
+      const response = await axios.get('http://localhost:8000/api/user/profile/me', {
         headers: {
           Authorization: `Bearer ${GetToken()}`,
         },
@@ -51,7 +51,7 @@ function Header() {
   };
 
   const fetchApiCarts = async () => {
-    const response = await axios.get(`https://2hm-store.click/api/cart/details`, {
+    const response = await axios.get(`http://localhost:8000/api/cart/details`, {
       headers: {
         Authorization: `Bearer ${GetToken()}`,
       },
@@ -66,7 +66,7 @@ function Header() {
 
   const fetchUnreadCount = async () => {
     try {
-      const responseNotifyNum = await axios.get('https://2hm-store.click/api/user/notifyNum/', {
+      const responseNotifyNum = await axios.get('http://localhost:8000/api/user/notifyNum/', {
         headers: {
           Authorization: `Bearer ${GetToken()}`,
         },
@@ -79,7 +79,7 @@ function Header() {
 
   const fetchNotifications = async () => {
     try {
-      const responseNotify = await axios.get('https://2hm-store.click/api/user/notify/', {
+      const responseNotify = await axios.get('http://localhost:8000/api/user/notify/', {
         headers: {
           Authorization: `Bearer ${GetToken()}`,
         },
@@ -125,31 +125,31 @@ function Header() {
           <nav className={cx('nav-bar')}>
             <div className={cx('nav-item')}>
               <Link to={config.routes.allProducts} className={cx('nav-link')}>
-                Sản phẩm
+                商品
               </Link>
             </div>
 
             <div className={cx('nav-item')}>
               <Link to={config.routes.bookingAppointment} className={cx('nav-link')}>
-                Dịch vụ
+                サービス
               </Link>
             </div>
 
             <div className={cx('nav-item')}>
               <Link to={config.routes.blog} className={cx('nav-link')}>
-                Bài viết
+                ブログ
               </Link>
             </div>
 
             <div className={cx('nav-item')}>
               <Link to={config.routes.forum} className={cx('nav-link')}>
-                Diễn đàn
+                フォーラム
               </Link>
             </div>
 
             <div className={cx('nav-item')}>
               <Link to={config.routes.question} className={cx('nav-link')}>
-                Hỏi đáp
+                Q＆A
               </Link>
             </div>
 
@@ -202,7 +202,7 @@ function Header() {
                             ),
                           )
                         ) : (
-                          <div>Không có thông báo nào</div>
+                          <div>お知らせはありません</div>
                         )}
                       </div>
                     )}
@@ -215,7 +215,7 @@ function Header() {
                 </div>
 
                 <div className={cx('nav-item')}>
-                  <Tippy content="Giỏ hàng">
+                  <Tippy content="カート">
                     <div
                       onClick={() => {
                         window.location.replace(config.routes.cart);
@@ -237,7 +237,7 @@ function Header() {
                     <div className={cx('menu')} tabIndex="-1" {...attrs}>
                       <button onClick={Logout} className={cx('user-btn')}>
                         <Icon className={cx('logout-icon')} icon="tabler:logout" />
-                        <span>Đăng xuất</span>
+                        <span>ログアウト</span>
                       </button>
                     </div>
                   )}
@@ -255,10 +255,10 @@ function Header() {
             ) : (
               <div className={cx('login-register-btn')}>
                 <button className={cx('custom-btn', 'btn-3')} onClick={() => goLogin(false)}>
-                  <span>Đăng nhập</span>
+                  <span>ログイン</span>
                 </button>
                 <button className={cx('custom-btn', 'btn-3')} onClick={() => goLogin(true)}>
-                  <span>Đăng ký</span>
+                  <span>新規登録</span>
                 </button>
               </div>
             )}

@@ -20,7 +20,7 @@ function Home() {
   useEffect(() => {
     const fetchAPICategories = async () => {
       try {
-        const response = await axios.get('https://2hm-store.click/api/breed/');
+        const response = await axios.get('http://localhost:8000/api/breed/');
         setBreeds(response.data.breeds);
       } catch (error) {
         console.log(error);
@@ -29,7 +29,7 @@ function Home() {
 
     const fetchAPIProducts = async () => {
       try {
-        const response = await axios.get('https://2hm-store.click/api/revenue/product');
+        const response = await axios.get('http://localhost:8000/api/revenue/product');
         setProducts(response.data.result.products);
       } catch (error) {
         console.log(error);
@@ -38,7 +38,7 @@ function Home() {
 
     const fetchAPIServices = async () => {
       try {
-        const response = await axios.get('https://2hm-store.click/api/service');
+        const response = await axios.get('http://localhost:8000/api/service');
         setServices(response.data.result);
       } catch (error) {
         console.log(error);
@@ -47,7 +47,7 @@ function Home() {
 
     const fetchAPIAllProducts = async () => {
       try {
-        const response = await axios.get('https://2hm-store.click/api/product');
+        const response = await axios.get('http://localhost:8000/api/product');
         console.log('product', response);
         setAllProducts(response.data.result);
       } catch (error) {
@@ -99,43 +99,43 @@ function Home() {
           <img
             className={cx('slide')}
             alt="slide2"
-            src="https://cosp.com.vn/uploaded/Nhi/pet%20shop/thiet-ke-pet-shop-kim-cuong-2.jpg"
+            src="https://cdn-media.sforum.vn/storage/app/media/wp-content/uploads/2024/05/anh-cho-thumbnail.jpg"
           ></img>
 
           <img
             className={cx('slide')}
             alt="slide3"
-            src="https://cosp.com.vn/uploaded/Nhi/pet%20shop/thiet-ke-pet-shop-kim-cuong-3.jpg"
+            src="https://cdn-media.sforum.vn/storage/app/media/wp-content/uploads/2023/08/hinh-nen-meo.jpg"
           ></img>
 
           <img
             className={cx('slide')}
             alt="slide4"
-            src="https://cosp.com.vn/uploaded/Nhi/pet%20shop/thiet-ke-pet-shop-kim-cuong-4.jpg"
+            src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/08/anh-con-meo-cute.jpg"
           ></img>
 
           <img
             className={cx('slide')}
             alt="slide5"
-            src="https://cosp.com.vn/uploaded/Nhi/pet%20shop/thiet-ke-pet-shop-kim-cuong-5.jpg"
+            src="https://cdn-media.sforum.vn/storage/app/media/wp-content/uploads/2024/05/anh-cho-thumbnail.jpg"
           ></img>
 
           <img
             className={cx('slide')}
             alt="slide5"
-            src="https://cosp.com.vn/uploaded/Nhi/pet%20shop/thiet-ke-pet-shop-kim-cuong-6.jpg"
+            src="https://cdn-media.sforum.vn/storage/app/media/wp-content/uploads/2023/08/hinh-nen-meo.jpg"
           ></img>
 
           <img
             className={cx('slide')}
             alt="slide5"
-            src="https://cosp.com.vn/uploaded/Nhi/pet%20shop/thiet-ke-pet-shop-kim-cuong-8.jpg"
+            src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/08/anh-con-meo-cute.jpg"
           ></img>
         </Slider>
       </div>
 
       <div className={cx('categories')}>
-        <h2 className={cx('header')}>Chào mừng bạn đến với hệ thống BH STORE</h2>
+        <h2 className={cx('header')}>BH STOREへようこそ</h2>
         <div className={cx('list-category')}>
           <div className={cx('category-item')}>
             <img
@@ -144,9 +144,9 @@ function Home() {
             ></img>
             <div className={cx('content-item')}>
               <h3>
-                <a href="#OnlineOrder">Đặt Hàng Online</a>
+                <a href="#OnlineOrder">オンラインで注文する</a>
               </h3>
-              <p>Giao hàng hỏa tốc, nội thành trong 2 tiếng</p>
+              <p>市内2時間超特急配送</p>
             </div>
           </div>
           <div className={cx('category-item')}>
@@ -156,9 +156,9 @@ function Home() {
             ></img>
             <div className={cx('content-item')}>
               <h3>
-                <a href="#Service">Cắt Tỉa & Spa</a>
+                <a href="#Service">トリミング＆スパ</a>
               </h3>
-              <p>Với quy trình 10 bước cắt tỉa, tạo kiểu cùng những thợ groomer hàng đầu</p>
+              <p>トップグルーマーによる10ステップのトリミング＆スタイリング</p>
             </div>
           </div>
           <div className={cx('category-item')}>
@@ -168,9 +168,9 @@ function Home() {
             ></img>
             <div className={cx('content-item')}>
               <h3>
-                <a href="#Service">Lưu chuồng</a>
+                <a href="#Service">ペットホテル</a>
               </h3>
-              <p>Chăm sóc và bảo vệ bé cún, mèo của bạn 24/7</p>
+              <p>愛犬・愛猫を24時間365日、大切にお世話＆見守り</p>
             </div>
           </div>
           <div className={cx('category-item')}>
@@ -180,16 +180,16 @@ function Home() {
             ></img>
             <div className={cx('content-item')}>
               <h3>
-                <a href="#Service">Bác Sĩ Thú Y</a>
+                <a href="#Service">獣医師</a>
               </h3>
-              <p>Khám chữa bệnh với các thiết bị hiện đại</p>
+              <p>最新設備と医療機器による安心の診療</p>
             </div>
           </div>
         </div>
       </div>
 
       <div className={cx('items-service')}>
-        <h2 className={cx('header')}>CHỦNG LOÀI</h2>
+        <h2 className={cx('header')}>種類</h2>
         <Slider {...settingSlider}>
           {breeds &&
             breeds.map((category) => {
@@ -205,7 +205,7 @@ function Home() {
                         className={cx('category-btn')}
                         to={`${config.routes.allProducts}?id1=${category.id}`}
                       >
-                        MUA NGAY
+                        購入する
                       </Button>
                     </div>
                   </Link>
@@ -216,7 +216,7 @@ function Home() {
       </div>
 
       <div className={cx('items-service')}>
-        <h2 className={cx('header')}>SẢN PHẨM BÁN CHẠY</h2>
+        <h2 className={cx('header')}>人気商品</h2>
         <Slider {...settingSlider}>
           {products &&
             products.map((products) => {
@@ -240,7 +240,7 @@ function Home() {
                         className={cx('category-btn')}
                         to={`detailItem/${products.id}`}
                       >
-                        MUA NGAY
+                        購入する
                       </Button>
                     </div>
                   </Link>
@@ -251,7 +251,7 @@ function Home() {
       </div>
 
       <div className={cx('items-service')}>
-        <h2 className={cx('header')}>SẢN PHẨM</h2>
+        <h2 className={cx('header')}>商品</h2>
         <Slider {...settingSlider}>
           {allProducts &&
             allProducts.map((products) => {
@@ -277,7 +277,7 @@ function Home() {
                         className={cx('category-btn')}
                         to={`detailItem/${products.id}`}
                       >
-                        MUA NGAY
+                        購入する
                       </Button>
                     </div>
                   </Link>
@@ -302,13 +302,13 @@ function Home() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>
             </span>
-            <span className={cx('button-text')}>Xem tất cả</span>
+            <span className={cx('button-text')}>すべて表示</span>
           </Link>
         </div>
       </div>
 
       <div className={cx('items-service')}>
-        <h2 className={cx('header')}>DỊCH VỤ</h2>
+        <h2 className={cx('header')}>サービス</h2>
         <Slider {...settingSlider}>
           {services &&
             services.map((services, index) => {
@@ -339,7 +339,7 @@ function Home() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>
             </span>
-            <span className={cx('button-text')}>Đặt lịch hẹn ngay</span>
+            <span className={cx('button-text')}>今すぐ予約する</span>
           </Link>
         </div>
       </div>
@@ -352,17 +352,15 @@ function Home() {
       </div>
 
       <div className={cx('categories')}>
-        <h2 className={cx('header')}>Dịch vụ của BH STORE</h2>
+        <h2 className={cx('header')}>BH STOREのサービス</h2>
         <div className={cx('list-category')}>
           <div id="Service" className={cx('service-item-left')}>
-            <h2>KHÁCH SẠN THÚ CƯNG</h2>
-            <div className={cx('content-service-left')}>Giúp thú cưng sạch sẽ hơn, gọn gàng hơn</div>
-            <div className={cx('content-service-left')}>Tạo những kiểu tóc sang chảnh, ấn tượng</div>
-            <div className={cx('content-service-left')}>Loại bỏ các mầm móng gây bệnh từ lông móng</div>
-            <div className={cx('content-service-left')}>
-              Thú cưng được massage đúng cách, tạo tâm lý vui vẻ, thoải mái
-            </div>
-            <div className={cx('content-service-left')}>Đảm bảo an toàn cho boss</div>
+            <h2>ペットホテル</h2> {/* Hoặc ペットトリミング＆スパ */}
+            <div className={cx('content-service-left')}>ペットをより清潔でスッキリとした姿に</div>
+            <div className={cx('content-service-left')}>おしゃれで魅力的なスタイリングをご提案</div>
+            <div className={cx('content-service-left')}>被毛や爪の衛生ケアで病気の予防にも</div>
+            <div className={cx('content-service-left')}>適切なマッサージでリラックス＆ストレス解消</div>
+            <div className={cx('content-service-left')}>安全・安心を最優先したケア</div>
           </div>
           <div className={cx('service-item-center')}>
             <img
@@ -371,20 +369,20 @@ function Home() {
             ></img>
           </div>
           <div className={cx('service-item-right')}>
-            <h2>THÚ Y - KHÁM CHỮA BỆNH</h2>
-            <div className={cx('content-service-right')}>Ngăn ngừa và sớm phát hiện các bệnh nguy hiểm</div>
-            <div className={cx('content-service-right')}>Kiểm soát được tình trạng mất cân bằng dinh dưỡng</div>
+            <h2>獣医 - 診察・治療</h2>
+            <div className={cx('content-service-right')}>危険な病気の予防と早期発見</div>
+            <div className={cx('content-service-right')}>栄養バランスの乱れを管理</div>
             <div className={cx('content-service-right')}>
-              Phát hiện bệnh từ những dấu hiệu ban đầu và điều trị dứt điểm
+              初期症状から病気を発見し、徹底的な治療を実施
             </div>
-            <div className={cx('content-service-right')}>Tiết kiệm chi phí và thời gian điều trị cho thú cưng</div>
-            <div className={cx('content-service-right')}>Phòng ngừa các bệnh lây từ thú sang người</div>
+            <div className={cx('content-service-right')}>ペットの治療にかかる費用と時間を節約</div>
+            <div className={cx('content-service-right')}>人間への感染を防ぐ</div>
           </div>
         </div>
       </div>
 
       <div className={cx('categories')}>
-        <h2 className={cx('header')}>Bảng giá dịch vụ BH STORE</h2>
+        <h2 className={cx('header')}>BH STOREの価格表</h2>
         <div className={cx('slider3')}>
           <img
             src="https://bizweb.dktcdn.net/100/467/317/themes/881347/assets/bang-pet-cung.jpg?1701914025229"

@@ -73,7 +73,7 @@ function Checkout() {
     //  console.log("heheh",orderItemsPayload);
     try {
       const response = await axios.post(
-        'https://2hm-store.click/api/order/create',
+        'http://localhost:8000/api/order/create',
         {
           Items: orderItemsPayload,
           address: address,

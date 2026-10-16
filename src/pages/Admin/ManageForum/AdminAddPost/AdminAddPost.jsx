@@ -29,7 +29,7 @@ const AdminAddPost = () => {
   const handleSubmit = async () => {
     await axios
       .post(
-        'https://2hm-store.click/api/post/forum/add',
+        'http://localhost:8000/api/post/forum/add',
         {
           title: title,
           thumbnail: thumbnail,
@@ -56,7 +56,7 @@ const AdminAddPost = () => {
   return (
     <div className={cx('addPostContainer')}>
       <div className={cx('formGroup')}>
-        <label>Tiêu đề:</label>
+        <label>タイトル:</label>
         <input value={title} onChange={handleChangeTitle} type="text" className={cx('formControl')} />
       </div>
       <div className={cx('formGroup')}>
@@ -64,11 +64,11 @@ const AdminAddPost = () => {
         <input value={thumbnail} onChange={handleChangeThumbnail} type="text" className={cx('formControl')} />
       </div>
       <div className={cx('formGroup')}>
-        <label>Nội dung:</label>
+        <label>内容:</label>
         <ReactQuill value={content} onChange={handleChangeContent} className={cx('formControl')} />
       </div>
       <button onClick={handleSubmit} className={cx('submitButton')}>
-        Đăng bài
+        投稿する
       </button>
     </div>
   );

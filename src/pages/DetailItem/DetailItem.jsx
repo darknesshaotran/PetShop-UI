@@ -38,7 +38,7 @@ function DetailItem() {
   const handleAddToCart = async () => {
     await axios
       .post(
-        'https://2hm-store.click/api/cart/add',
+        'http://localhost:8000/api/cart/add',
         {
           quantity: count,
           id_product: id,
@@ -87,14 +87,14 @@ function DetailItem() {
 
   useEffect(() => {
     const getAPIDetailItem = async () => {
-      const response = await axios.get(`https://2hm-store.click/api/product/${id}`);
+      const response = await axios.get(`http://localhost:8000/api/product/${id}`);
       setProduct(response.data.result);
       setRatings(response.data.result.rating);
     };
 
     const fetchAPIProducts = async () => {
       try {
-        const response = await axios.get('https://2hm-store.click/api/revenue/product');
+        const response = await axios.get('http://localhost:8000/api/revenue/product');
         setProducts(response.data.result.products);
       } catch (error) {
         console.log(error);
@@ -108,7 +108,7 @@ function DetailItem() {
     const fetchAPIRelatedProducts = async () => {
       try {
         const BreedId = product.Breed?.id;
-        const response = await axios.get(`https://2hm-store.click/api/product?id_breed=${BreedId}`);
+        const response = await axios.get(`http://localhost:8000/api/product?id_breed=${BreedId}`);
         console.log('related', product);
         setRelated(response.data.result);
       } catch (error) {
@@ -156,17 +156,17 @@ function DetailItem() {
           />
           {product.amount === 0 && (
             <span className={cx('out-of-stock-text')} disabled>
-              Hết hàng
+              売り切れ
             </span>
           )}
         </div>
         <div className={cx('prouduct-info')}>
           <h1 className={cx('product-name')}>{product.name}</h1>
           <p className={cx('product-des')}>
-            Chủng loài: {product.Breed ? product.Breed.name : 'Thông tin chủng loài không có sẵn'}
+            商品名: {product.Breed ? product.Breed.name : '品種情報がありません'}
           </p>
-          <p className={cx('product-des')}>Số lượng: {product.amount}</p>
-          <p className={cx('product-des')}>Mô tả: {product.description}</p>
+          <p className={cx('product-des')}>数量: {product.amount}</p>
+          <p className={cx('product-des')}>説明: {product.description}</p>
           <span className={cx('prouduct-price')}>{formatCurrency(product.price)}</span>
           <div className={cx('product-cart')}>
             <div className={cx('product-quantity')}>
@@ -195,7 +195,7 @@ function DetailItem() {
               }}
               disabled={product.amount === 0}
             >
-              <span>{product.amount === 0 ? 'Hết hàng' : 'Thêm vào giỏ'}</span>
+              <span>{product.amount === 0 ? '売り切れ' : 'カートに追加'}</span>
             </button>
           </div>
         </div>
@@ -203,7 +203,7 @@ function DetailItem() {
 
       <div className={cx('extra-detail')}>
         <div className={cx('header-field')}>
-          <span className={cx('header-rate')}>Đánh giá</span>
+          <span className={cx('header-rate')}>評価</span>
         </div>
         <div className={cx('content')}>
           {ratings.length > 0 ? (
@@ -213,16 +213,16 @@ function DetailItem() {
               <img
                 className={cx('img-rate')}
                 src="https://cdn-icons-png.flaticon.com/512/5650/5650427.png"
-                alt="Chưa có đánh giá"
+                alt="未評価"
               ></img>
-              <span className={cx('rate')}>Chưa có đánh giá</span>
+              <span className={cx('rate')}>未評価</span>
             </div>
           )}
         </div>
       </div>
 
       <div className={cx('items-service')}>
-        <h2 className={cx('header')}>SẢN PHẨM BÁN CHẠY</h2>
+        <h2 className={cx('header')}>人気商品</h2>
         <Slider {...settingSlider}>
           {products.map((product) => (
             <div key={product.id} className={cx('item-service')}>
@@ -244,7 +244,7 @@ function DetailItem() {
                       handleLinkClick(product.id);
                     }}
                   >
-                    MUA NGAY
+                    今すぐ購入
                   </Button>
                 </div>
               </Link>
@@ -254,7 +254,7 @@ function DetailItem() {
       </div>
 
       <div className={cx('items-service')}>
-        <h2 className={cx('header')}>SẢN PHẨM LIÊN QUAN</h2>
+        <h2 className={cx('header')}>関連商品</h2>
         <Slider {...settingSlider}>
           {related.map((relatedProduct) => (
             <div key={relatedProduct.id} className={cx('item-service')}>
@@ -280,7 +280,7 @@ function DetailItem() {
                       handleLinkClick(relatedProduct.id);
                     }}
                   >
-                    MUA NGAY
+                    今すぐ購入
                   </Button>
                 </div>
               </Link>

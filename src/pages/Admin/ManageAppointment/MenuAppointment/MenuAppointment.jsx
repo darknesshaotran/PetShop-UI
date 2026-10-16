@@ -33,7 +33,7 @@ function MenuAppointment() {
   }
   useEffect(() => {
     const getApiOrderPending = async () => {
-      const response = await axios.get('https://2hm-store.click/api/appointment/1', {
+      const response = await axios.get('http://localhost:8000/api/appointment/1', {
         headers: {
           Authorization: `Bearer ${getJwtFromCookie()}`,
         },
@@ -41,7 +41,7 @@ function MenuAppointment() {
       setCountPending(response.data.detailAppointment.length);
     };
     const getApiAppointmentPrepared = async () => {
-      const response = await axios.get('https://2hm-store.click/api/appointment/6', {
+      const response = await axios.get('http://localhost:8000/api/appointment/6', {
         headers: {
           Authorization: `Bearer ${getJwtFromCookie()}`,
         },
@@ -49,7 +49,7 @@ function MenuAppointment() {
       setCountAccepted(response.data.detailAppointment.length);
     };
     const getApiAppointmentCanceled = async () => {
-      const response = await axios.get('https://2hm-store.click/api/appointment/5', {
+      const response = await axios.get('http://localhost:8000/api/appointment/5', {
         headers: {
           Authorization: `Bearer ${getJwtFromCookie()}`,
         },
@@ -57,7 +57,7 @@ function MenuAppointment() {
       setCountCanceled(response.data.detailAppointment.length);
     };
     const getApiAppointmentCompleted = async () => {
-      const response = await axios.get('https://2hm-store.click/api/appointment/7', {
+      const response = await axios.get('http://localhost:8000/api/appointment/7', {
         headers: {
           Authorization: `Bearer ${getJwtFromCookie()}`,
         },
@@ -76,28 +76,28 @@ function MenuAppointment() {
         <FontAwesomeIcon className={cx('bx')} icon={faHourglassHalf}></FontAwesomeIcon>
         <span className={cx('text')}>
           <h3>{countPending}</h3>
-          <p>Cuộc hẹn đang chờ xử lý</p>
+          <p>処理待ちの予約</p>
         </span>
       </li>
       <li onClick={() => window.location.replace(config.routes.appointmentAccepted)}>
         <FontAwesomeIcon className={cx('bx')} icon={faCheck}></FontAwesomeIcon>
         <span className={cx('text')}>
           <h3>{countAccepted}</h3>
-          <p>Cuộc hẹn đã chấp nhận</p>
+          <p>承認済みの予約</p>
         </span>
       </li>
       <li onClick={() => window.location.replace(config.routes.appointmentCanceled)}>
         <FontAwesomeIcon className={cx('bx')} icon={faCancel}></FontAwesomeIcon>
         <span className={cx('text')}>
           <h3>{countCanceled}</h3>
-          <p>Cuộc hẹn đã được hủy</p>
+          <p>キャンセル済みの予約</p>
         </span>
       </li>
       <li onClick={() => window.location.replace(config.routes.appointmentCompleted)}>
         <FontAwesomeIcon className={cx('bx')} icon={faCheckCircle}></FontAwesomeIcon>
         <span className={cx('text')}>
           <h3>{countCompleted}</h3>
-          <p>Cuộc hẹn đã hoàn thành</p>
+          <p>完了した予約</p>
         </span>
       </li>
     </ul>

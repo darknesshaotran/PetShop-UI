@@ -51,7 +51,7 @@ function Sidebar() {
         >
           <Link to="" onClick={() => handleSetActive(0)}>
             <FontAwesomeIcon className={cx('bx')} icon={faHouse}></FontAwesomeIcon>
-            <span className={cx('text')}>Đơn hàng</span>
+            <span className={cx('text')}>受注</span>
           </Link>
         </li>
 
@@ -61,7 +61,7 @@ function Sidebar() {
         >
           <Link to="" onClick={() => handleSetActive(1)}>
             <FontAwesomeIcon className={cx('bx')} icon={faHouse}></FontAwesomeIcon>
-            <span className={cx('text')}>Lịch hẹn</span>
+            <span className={cx('text')}>予約</span>
           </Link>
         </li>
 
@@ -71,7 +71,7 @@ function Sidebar() {
         >
           <Link to="" onClick={() => handleSetActive(4)}>
             <FontAwesomeIcon className={cx('bx')} icon={faCat}></FontAwesomeIcon>
-            <span className={cx('text')}>Chủng loài</span>
+            <span className={cx('text')}>種類</span>
           </Link>
         </li>
 
@@ -81,7 +81,7 @@ function Sidebar() {
         >
           <Link to="" onClick={() => handleSetActive(5)}>
             <FontAwesomeIcon className={cx('bx')} icon={faDog}></FontAwesomeIcon>
-            <span className={cx('text')}>Sản phẩm</span>
+            <span className={cx('text')}>商品</span>
           </Link>
         </li>
 
@@ -91,7 +91,7 @@ function Sidebar() {
         >
           <Link to="" onClick={() => handleSetActive(6)}>
             <FontAwesomeIcon className={cx('bx')} icon={faServicestack}></FontAwesomeIcon>
-            <span className={cx('text')}>Dịch vụ</span>
+            <span className={cx('text')}>サービス</span>
           </Link>
         </li>
 
@@ -101,7 +101,7 @@ function Sidebar() {
         >
           <Link to="" onClick={() => handleSetActive(7)}>
             <FontAwesomeIcon className={cx('bx')} icon={faBook}></FontAwesomeIcon>
-            <span className={cx('text')}>Blog</span>
+            <span className={cx('text')}>ブログ</span>
           </Link>
         </li>
 
@@ -111,7 +111,7 @@ function Sidebar() {
         >
           <Link to="" onClick={() => handleSetActive(9)}>
             <FontAwesomeIcon className={cx('bx')} icon={faForumbee}></FontAwesomeIcon>
-            <span className={cx('text')}>Diễn đàn</span>
+            <span className={cx('text')}>ディスカッション</span>
           </Link>
         </li>
 
@@ -122,7 +122,7 @@ function Sidebar() {
         >
           <Link to="" onClick={() => handleSetActive(8)}>
             <FontAwesomeIcon className={cx('bx')} icon={faMessage}></FontAwesomeIcon>
-            <span className={cx('text')}>Tin nhắn</span>
+            <span className={cx('text')}>メッセージ</span>
           </Link>
         </li>
 
@@ -132,7 +132,7 @@ function Sidebar() {
         >
           <Link to="" onClick={() => handleSetActive(3)}>
             <FontAwesomeIcon className={cx('bx')} icon={faChartLine}></FontAwesomeIcon>
-            <span className={cx('text')}>Doanh thu bán hàng</span>
+            <span className={cx('text')}>売上収入</span>
           </Link>
         </li>
       </ul>
@@ -141,7 +141,7 @@ function Sidebar() {
         <li>
           <Link to="" onClick={() => Logout()} className={cx('logout')}>
             <FontAwesomeIcon className={cx('bx')} icon={faRightFromBracket}></FontAwesomeIcon>
-            <span className={cx('text')}>Đăng xuất</span>
+            <span className={cx('text')}>ログアウト</span>
           </Link>
         </li>
       </ul>

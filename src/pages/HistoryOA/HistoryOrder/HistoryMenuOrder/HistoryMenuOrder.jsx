@@ -34,7 +34,7 @@ function HistoryMenuOrder() {
   }
   useEffect(() => {
     const getApiOrderPending = async () => {
-      const response = await axios.get('https://2hm-store.click/api/order/status/1', {
+      const response = await axios.get('http://localhost:8000/api/order/status/1', {
         headers: {
           Authorization: `Bearer ${getJwtFromCookie()}`,
         },
@@ -42,7 +42,7 @@ function HistoryMenuOrder() {
       setCountPending(response.data.result.length);
     };
     const getApiOrderPreparing = async () => {
-      const response = await axios.get('https://2hm-store.click/api/order/status/2', {
+      const response = await axios.get('http://localhost:8000/api/order/status/2', {
         headers: {
           Authorization: `Bearer ${getJwtFromCookie()}`,
         },
@@ -50,7 +50,7 @@ function HistoryMenuOrder() {
       setCountPreparing(response.data.result.length);
     };
     const getApiOrderDelivering = async () => {
-      const response = await axios.get('https://2hm-store.click/api/order/status/3', {
+      const response = await axios.get('http://localhost:8000/api/order/status/3', {
         headers: {
           Authorization: `Bearer ${getJwtFromCookie()}`,
         },
@@ -58,7 +58,7 @@ function HistoryMenuOrder() {
       setCountDelivering(response.data.result.length);
     };
     const getApiOrderSuccess = async () => {
-      const response = await axios.get('https://2hm-store.click/api/order/status/4', {
+      const response = await axios.get('http://localhost:8000/api/order/status/4', {
         headers: {
           Authorization: `Bearer ${getJwtFromCookie()}`,
         },
@@ -66,7 +66,7 @@ function HistoryMenuOrder() {
       setCountSuccess(response.data.result.length);
     };
     const getApiOrderCanceled = async () => {
-      const response = await axios.get('https://2hm-store.click/api/order/status/5', {
+      const response = await axios.get('http://localhost:8000/api/order/status/5', {
         headers: {
           Authorization: `Bearer ${getJwtFromCookie()}`,
         },
@@ -85,35 +85,35 @@ function HistoryMenuOrder() {
         <FontAwesomeIcon className={cx('bx')} icon={faHourglassHalf}></FontAwesomeIcon>
         <span className={cx('text')}>
           <h3>{countPending}</h3>
-          <p>Đơn hàng đang chờ xử lý</p>
+          <p>未処理</p>
         </span> 
       </li>
       <li onClick={() => window.location.replace(config.routes.historyOrderWaiting)}>
         <FontAwesomeIcon className={cx('bx')} icon={faStopwatch}></FontAwesomeIcon>
         <span className={cx('text')}>
           <h3>{countPreparing}</h3>
-          <p>Đơn hàng đang chuẩn bị</p>
+          <p>発送準備中</p>
         </span>
       </li>
       <li onClick={() => window.location.replace(config.routes.historyOrderDelivering)}>
         <FontAwesomeIcon className={cx('bx')} icon={faTruck}></FontAwesomeIcon>
         <span className={cx('text')}>
           <h3>{countDelivering}</h3>
-          <p>Đơn hàng đang được giao</p>
+          <p>配達中</p>
         </span>
       </li>
       <li onClick={() => window.location.replace(config.routes.historyOrderSuccess)}>
         <FontAwesomeIcon className={cx('bx')} icon={faCheckCircle}></FontAwesomeIcon>
         <span className={cx('text')}>
           <h3>{countSuccess}</h3>
-          <p>Đơn hàng giao thành công</p>
+          <p>配達完了</p>
         </span>
       </li>
       <li onClick={() => window.location.replace(config.routes.historyOrderCanceled)}>
         <FontAwesomeIcon className={cx('bx')} icon={faCancel}></FontAwesomeIcon>
         <span className={cx('text')}>
           <h3>{countCanceled}</h3>
-          <p>Đơn hàng bị hủy</p>
+          <p>キャンセル済み</p>
         </span>
       </li>
     </ul>

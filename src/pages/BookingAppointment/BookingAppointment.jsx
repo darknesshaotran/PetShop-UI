@@ -34,7 +34,7 @@ const BookAppointment = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get('https://2hm-store.click/api/service');
+        const response = await axios.get('http://localhost:8000/api/service');
         // console.log("res kaka", response);
         setServices(response.data.result);
       } catch (error) {
@@ -60,19 +60,19 @@ const BookAppointment = () => {
     let isValid = true;
 
     if (!formData.id_service) {
-      errors.id_service = 'Vui lòng chọn dịch vụ.';
+      errors.id_service = 'サービスを選択してください。';
       isValid = false;
     }
     if (!formData.appointmentTime) {
-      errors.appointmentTime = 'Vui lòng chọn thời gian bắt đầu.';
+      errors.appointmentTime = '開始時間を選択してください。';
       isValid = false;
     }
     if (!formData.endTime) {
-      errors.endTime = 'Vui lòng chọn thời gian kết thúc.';
+      errors.endTime = '終了時間を選択してください。';
       isValid = false;
     }
     if (!formData.order_phoneNumber) {
-      errors.order_phoneNumber = 'Vui lòng nhập số điện thoại.';
+      errors.order_phoneNumber = '電話番号を入力してください。';
       isValid = false;
     }
     setErrorMessages(errors);
@@ -85,7 +85,7 @@ const BookAppointment = () => {
       return;
     }
     try {
-      const response = await axios.post('https://2hm-store.click/api/appointment/create', formData, {
+      const response = await axios.post('http://localhost:8000/api/appointment/create', formData, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${GetToken()}`,
@@ -118,11 +118,11 @@ const BookAppointment = () => {
       case 0:
         return (
           <>
-            <label className={cx('form-label')}>Vui lòng chọn dịch vụ:</label>
+            <label className={cx('form-label')}></label>
             <div className={cx('form-group')}>
-              <label htmlFor="service">Dịch vụ</label>
+              <label htmlFor="service">サービス</label>
               <select id="service" name="id_service" value={formData.id_service} onChange={handleChange}>
-                <option value="">Chọn dịch vụ</option>
+                <option value="">サービスを選択してください</option>
                 {services.map((service) => (
                   <option key={service.id} value={service.id}>
                     {service.name}
@@ -136,9 +136,9 @@ const BookAppointment = () => {
       case 1:
         return (
           <>
-            <label className={cx('form-label')}>Vui lòng chọn thời gian:</label>
+            <label className={cx('form-label')}>日時をご選択ください。</label>
             <div className={cx('form-group')}>
-              <label htmlFor="appointmentTime">Thời gian bắt đầu</label>
+              <label htmlFor="appointmentTime">開始時間</label>
               <input
                 type="datetime-local"
                 id="appointmentTime"
@@ -149,7 +149,7 @@ const BookAppointment = () => {
               {errorMessages.appointmentTime && <small className={cx('error')}>{errorMessages.appointmentTime}</small>}
             </div>
             <div className={cx('form-group')}>
-              <label htmlFor="endTime">Thời gian kết thúc</label>
+              <label htmlFor="endTime">終了時間</label>
               <input
                 type="datetime-local"
                 id="endTime"
@@ -164,9 +164,9 @@ const BookAppointment = () => {
       case 2:
         return (
           <>
-            <label className={cx('form-label')}>Vui lòng cung cấp thông tin chi tiết:</label>
+            <label className={cx('form-label')}>詳細情報をご入力ください。</label>
             <div className={cx('form-group')}>
-              <label htmlFor="phoneNumber">Số điện thoại</label>
+              <label htmlFor="phoneNumber">電話番号</label>
               <input
                 type="text"
                 id="phoneNumber"
@@ -179,13 +179,13 @@ const BookAppointment = () => {
               )}
             </div>
             <div className={cx('form-group')}>
-              <label htmlFor="note">Ghi chú</label>
+              <label htmlFor="note">メモ</label>
               <input type="text" id="note" name="note" value={formData.note} onChange={handleChange} />
             </div>
           </>
         );
       case 3:
-        return <p>Cảm ơn! Cuộc hẹn của bạn đã được xác nhận.</p>;
+        return <p>ありがとうございます！ご予約が確定いたしました。</p>;
       default:
         return null;
     }
@@ -198,22 +198,22 @@ const BookAppointment = () => {
           <img
             className={cx('slide')}
             alt="slide2"
-            src="https://cosp.com.vn/uploaded/Nhi/pet%20shop/thiet-ke-pet-shop-kim-cuong-2.jpg"
+            src="https://marketplace.canva.com/kx6jY/MAGzG5kx6jY/1/tl/canva-MAGzG5kx6jY.jpg"
           ></img>
           <img
             className={cx('slide')}
             alt="slide3"
-            src="https://cosp.com.vn/uploaded/Nhi/pet%20shop/thiet-ke-pet-shop-kim-cuong-3.jpg"
+            src="https://cdn.pixabay.com/photo/2023/06/29/12/28/cats-8096304_640.jpg"
           ></img>
           <img
             className={cx('slide')}
             alt="slide4"
-            src="https://cosp.com.vn/uploaded/Nhi/pet%20shop/thiet-ke-pet-shop-kim-cuong-4.jpg"
+            src="https://marketplace.canva.com/kx6jY/MAGzG5kx6jY/1/tl/canva-MAGzG5kx6jY.jpg"
           ></img>
           <img
             className={cx('slide')}
             alt="slide5"
-            src="https://cosp.com.vn/uploaded/Nhi/pet%20shop/thiet-ke-pet-shop-kim-cuong-5.jpg"
+            src="https://cdn.pixabay.com/photo/2023/06/29/12/28/cats-8096304_640.jpg"
           ></img>
           <img
             className={cx('slide')}
@@ -250,37 +250,37 @@ const BookAppointment = () => {
           />
           <div className={cx('form-container')}>
             <div className={cx('appointment-form')}>
-              <h1>Đặt lịch hẹn</h1>
+              <h1>予約する</h1>
               <div className={cx('progress-bar')}>
-                <div className={cx('progress-step', { active: step >= 0 })}>Dịch vụ</div>
+                <div className={cx('progress-step', { active: step >= 0 })}>サービス</div>
                 <div className={cx('progress-line', { active: step >= 1 })}></div>
-                <div className={cx('progress-step', { active: step >= 1 })}>Thời gian</div>
+                <div className={cx('progress-step', { active: step >= 1 })}>時間</div>
                 <div className={cx('progress-line', { active: step >= 2 })}></div>
-                <div className={cx('progress-step', { active: step >= 2 })}>Chi tiết</div>
+                <div className={cx('progress-step', { active: step >= 2 })}>詳細</div>
                 <div className={cx('progress-line', { active: step >= 3 })}></div>
-                <div className={cx('progress-step', { active: step >= 3 })}>Hoàn thành</div>
+                <div className={cx('progress-step', { active: step >= 3 })}>完了</div>
               </div>
               <form onSubmit={handleSubmit}>
                 {renderForm()}
                 {step < 3 && (
                   <p className={cx('privacy-policy')}>
-                    Bằng cách gửi biểu mẫu này, bạn đồng ý với Chính sách quyền riêng tư của chúng tôi
+                    このフォームを送信することで、お客様は当社のプライバシーポリシーに同意したことになります。
                   </p>
                 )}
                 <div className={cx('form-actions')}>
                   {step > 0 && (
                     <Button type="button" className={cx('btn', 'previous')} onClick={prevStep}>
-                      Quay lại
+                      戻る
                     </Button>
                   )}
                   {step < 2 && (
                     <Button type="button" className={cx('btn', 'next')} onClick={nextStep}>
-                      Tiếp theo
+                      次へ
                     </Button>
                   )}
                   {step === 2 && (
                     <Button type="submit" className={cx('btn', 'next')}>
-                      Hoàn thành
+                      完了
                     </Button>
                   )}
                 </div>

@@ -61,7 +61,7 @@ function Cart() {
   useEffect(() => {
     const fetchApiCarts = async () => {
     // console.log("hahahah");
-      const response = await axios.get(`https://2hm-store.click/api/cart/details`, {
+      const response = await axios.get(`http://localhost:8000/api/cart/details`, {
         headers: {
           Authorization: `Bearer ${GetToken()}`,
         },
@@ -105,7 +105,7 @@ function Cart() {
           theme="light"
         />
         {cartItems.length === 0 ? (
-          <p className={cx('cart-item-null')}>Không có sản phẩm nào trong giỏ hàng của bạn.</p>
+          <p className={cx('cart-item-null')}>カートに商品が入っていません</p>
         ) : (
           cartItems.map((cartItem) => {
             return (
@@ -122,23 +122,23 @@ function Cart() {
       </div>
       <div className={cx('right-column')}>
         <div className={cx('order-summary')}>
-          <h3 className="title">Thanh toán</h3>
+          <h3 className="title">お支払い</h3>
           <div className={cx('subtotal')}>
-            <span>Thành tiền:</span>
+            <span>小計:</span>
             <span className="price">
             {formatCurrency(subTotal)}
             </span>
           </div>
           <div className={cx('discount')}>
-            <span>Giảm giá:(-0%)</span>
+            <span>割引:(-0%)</span>
             <span className="discount-price">{formatCurrency(0)}</span>
           </div>
           <div className={cx('total')}>
-            <span className={cx('total-text')}>Tổng: </span>
+            <span className={cx('total-text')}>合計: </span>
             <span className={cx('total-price')}>{formatCurrency(subTotal)}</span>
           </div>
           <button className={cx('go-to-checkout')} onClick={handleGoToCheckout}>
-            Đặt hàng ngay 
+            今すぐ注文する
             <LuMoveRight />
           </button>
         </div>

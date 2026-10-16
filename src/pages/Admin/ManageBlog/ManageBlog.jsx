@@ -20,7 +20,7 @@ function ManageBlog() {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get(`https://2hm-store.click/api/post`, {
+      const response = await axios.get(`http://localhost:8000/api/post`, {
         headers: { Authorization: `Bearer ${GetToken()}`},
       });
       if (response.data.success && Array.isArray(response.data.result)) {
@@ -33,7 +33,7 @@ function ManageBlog() {
 
   const fetchDelete = async (id_post) => {
     try {
-      await axios.delete(`https://2hm-store.click/api/post/delete/${id_post}`, {
+      await axios.delete(`http://localhost:8000/api/post/delete/${id_post}`, {
         headers: { Authorization: `Bearer ${GetToken()}`},
       });
     } catch (error) {
@@ -56,7 +56,7 @@ function ManageBlog() {
       <div className={cx('tableHeader')} >
         <div className={cx('actions')} >
           <button className={cx('btn')} onClick={handleGoToAddBlog}>
-            Thêm bài viết
+            記事の追加
           </button>
         </div>
       </div>
@@ -64,9 +64,9 @@ function ManageBlog() {
         <thead>
           <tr>
             <th>Thumbnail</th>
-            <th>Tiêu đề</th>
-            <th>Ngày tạo</th>
-            <th>Hành động</th>
+            <th>タイトル</th>
+            <th>作成日</th>
+            <th>アクション</th>
           </tr>
         </thead>
         <tbody>
@@ -89,7 +89,7 @@ function ManageBlog() {
             ))
           ) : (
             <tr>
-              <td colSpan="9" className={cx('noData')}>Không có dữ liệu</td>
+              <td colSpan="9" className={cx('noData')}>データがありません</td>
             </tr>
           )}
         </tbody>

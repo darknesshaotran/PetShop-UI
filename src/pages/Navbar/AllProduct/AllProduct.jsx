@@ -40,7 +40,7 @@ function AllProduct() {
     const fetchApiProducts = async () => {
       try {
         const response = await axios.get(
-          `https://2hm-store.click/api/product`, {
+          `http://localhost:8000/api/product`, {
             params: {
               limit: 100,
               id_breed: idBreed,
@@ -59,7 +59,7 @@ function AllProduct() {
 
     const fetchApiBreeds = async () => {
       try {
-        const response = await axios.get('https://2hm-store.click/api/breed/');
+        const response = await axios.get('http://localhost:8000/api/breed/');
         setBreeds(response.data.breeds || []);
       } catch (error) {
         console.error("Error fetching breeds", error);
@@ -107,12 +107,12 @@ function AllProduct() {
           <ul className={styles['select-input__list']}>
             <li className={styles['select-input__item']}>
               <Link to="#" onClick={() => setDescPrice(0)} className={styles['select-input__link']}>
-                Giá: Thấp đến cao
+                価格の安い順
               </Link>
             </li>
             <li className={styles['select-input__item']}>
               <Link to="#" onClick={() => setDescPrice(1)} className={styles['select-input__link']}>
-                Giá: Cao đến thấp
+                価格の高い順
               </Link>
             </li>
           </ul>

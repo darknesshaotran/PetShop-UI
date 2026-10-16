@@ -42,7 +42,7 @@ function Appointment({ data, icon }) {
 
   const openModalDetail = async (id) => {
     setIsModalOpenDetail(true);
-    const response = await axios.get(`https://2hm-store.click/api/appointment/detail/${id}`, {
+    const response = await axios.get(`http://localhost:8000/api/appointment/detail/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${GetToken()}`,
@@ -62,7 +62,7 @@ function Appointment({ data, icon }) {
   const handleChangeAppointmentAccept = async (id) => {
     await axios
       .put(
-        `https://2hm-store.click/api/appointment/accept/${id}`,
+        `http://localhost:8000/api/appointment/accept/${id}`,
         {},
         {
           headers: {
@@ -85,7 +85,7 @@ function Appointment({ data, icon }) {
   const handleChangeAppointmentCancel = async (id) => {
     await axios
       .put(
-        `https://2hm-store.click/api/appointment/cancel/${id}`,
+        `http://localhost:8000/api/appointment/cancel/${id}`,
         {},
         {
           headers: {
@@ -108,7 +108,7 @@ function Appointment({ data, icon }) {
   const handleChangeAppointmentCompleted = async (id) => {
     await axios
       .put(
-        `https://2hm-store.click/api/appointment/complete/${id}`,
+        `http://localhost:8000/api/appointment/complete/${id}`,
         {},
         {
           headers: {
@@ -130,7 +130,7 @@ function Appointment({ data, icon }) {
 
   const openModalDetailPending = async (id) => {
     setIsModalOpenDetailPending(true);
-    const response = await axios.get(`https://2hm-store.click/api/appointment/detail/${id}`, {
+    const response = await axios.get(`http://localhost:8000/api/appointment/detail/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${GetToken()}`,
@@ -149,7 +149,7 @@ function Appointment({ data, icon }) {
 
   const handleUpdate = async (id) => {
     await axios
-      .put(`https://2hm-store.click/api/appointment/update/${id}`, formData, {
+      .put(`http://localhost:8000/api/appointment/update/${id}`, formData, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${GetToken()}`, // Điều chỉnh nếu cần
@@ -187,19 +187,19 @@ function Appointment({ data, icon }) {
           className={cx('btn')}
           blue
         >
-          Chi tiết
+          詳細
         </Button>
 
         <Button onClick={() => handleChangeAppointmentAccept(data.id)} className={cx('btn')} blue>
-          Chấp nhận
+          承認
         </Button>
 
         <Button onClick={() => openModalDetailPending(data.id)} className={cx('btn')} blue>
-          Cập nhật
+          更新
         </Button>
 
         <Button onClick={() => handleChangeAppointmentCancel(data.id)} className={cx('btn')} outline>
-          Hủy
+          キャンセル
         </Button>
       </div>
     );
@@ -215,11 +215,11 @@ function Appointment({ data, icon }) {
           className={cx('btn')}
           blue
         >
-          Chi tiết
+          詳細
         </Button>
 
         <Button onClick={() => handleChangeAppointmentCompleted(data.id)} className={cx('btn')} blue>
-          Hoàn thành
+          完了
         </Button>
       </div>
     );
@@ -234,7 +234,7 @@ function Appointment({ data, icon }) {
           className={cx('btn')}
           outline
         >
-          Chi tiết
+          詳細
         </Button>
       </div>
     );
@@ -249,7 +249,7 @@ function Appointment({ data, icon }) {
           className={cx('btn')}
           outline
         >
-          Chi tiết
+          詳細
         </Button>
       </div>
     );
@@ -291,7 +291,7 @@ function Appointment({ data, icon }) {
         height={'500px'}
       >
         <animated.div style={modalAnimationDetail}>
-          <h2>Thông tin chi tiết</h2>
+          <h2>詳細情報</h2>
           <div className={cx('detail')}>
             <Image
               className={cx('detail-image')}
@@ -306,36 +306,36 @@ function Appointment({ data, icon }) {
             </div>
 
             <div className={cx('detail-item')}>
-              <label className={cx('detail-label')}>Dịch vụ:</label>
+              <label className={cx('detail-label')}>サービス:</label>
               <div className={cx('detail-value')}>
                 {appointmentDetail.Service ? appointmentDetail.Service.name : ''}
               </div>
             </div>
 
             <div className={cx('detail-item')}>
-              <label className={cx('detail-label')}>Mô tả:</label>
+              <label className={cx('detail-label')}>説明:</label>
               <div className={cx('detail-value')}>
                 {appointmentDetail.Service ? appointmentDetail.Service.description : ''}
               </div>
             </div>
 
             <div className={cx('detail-item')}>
-              <label className={cx('detail-label')}>Ghi chú:</label>
+              <label className={cx('detail-label')}>メモ:</label>
               <div className={cx('detail-value')}>{data.note}</div>
             </div>
 
             <div className={cx('detail-item')}>
-              <label className={cx('detail-label')}>Thời gian bắt đầu:</label>
+              <label className={cx('detail-label')}>開始時間:</label>
               <div className={cx('detail-value')}>{formattedDate}</div>
             </div>
 
             <div className={cx('detail-item')}>
-              <label className={cx('detail-label')}>Thời gian kết thúc:</label>
+              <label className={cx('detail-label')}>終了時間:</label>
               <div className={cx('detail-value')}>{formattedEndTime}</div>
             </div>
 
             <div className={cx('detail-item')}>
-              <label className={cx('detail-label')}>Giá:</label>
+              <label className={cx('detail-label')}>価格:</label>
               <div className={cx('detail-value')}>{data.totalPrice && formatCurrency(data.totalPrice)}</div>
             </div>
           </div>
@@ -350,7 +350,7 @@ function Appointment({ data, icon }) {
         height={'500px'}
       >
         <animated.div style={modalAnimationDetailPending}>
-          <h2>Thông tin chi tiết</h2>
+          <h2>詳細情報</h2>
           <div className={cx('detail')}>
             <Image
               className={cx('detail-image')}
@@ -358,48 +358,48 @@ function Appointment({ data, icon }) {
               alt="avatar"
             ></Image>
             <div className={cx('detail-item')}>
-              <label className={cx('detail-label')}>Tên:</label>
+              <label className={cx('detail-label')}>名前:</label>
               <div className={cx('detail-value')}>
                 {data.Account.inforUser.firstname + ' ' + data.Account.inforUser.lastname}
               </div>
             </div>
 
             <div className={cx('detail-item')}>
-              <label className={cx('detail-label')}>Dịch vụ:</label>
+              <label className={cx('detail-label')}>サービス:</label>
               <div className={cx('detail-value')}>
                 {appointmentDetail.Service ? appointmentDetail.Service.name : ''}
               </div>
             </div>
 
             <div className={cx('detail-item')}>
-              <label className={cx('detail-label')}>Mô tả:</label>
+              <label className={cx('detail-label')}>説明:</label>
               <div className={cx('detail-value')}>
                 {appointmentDetail.Service ? appointmentDetail.Service.description : ''}
               </div>
             </div>
 
             <div className={cx('detail-item')}>
-              <label className={cx('detail-label')}>Ghi chú:</label>
+              <label className={cx('detail-label')}>メモ:</label>
               <input className={cx('detail-input')} name="note" value={formData.note} onChange={handleInputChange} />
             </div>
 
             <div className={cx('detail-item')}>
-              <label className={cx('detail-label')}>Thời gian bắt đầu:</label>
+              <label className={cx('detail-label')}>開始時間:</label>
               <div className={cx('detail-value')}>{formattedDate}</div>
             </div>
 
             <div className={cx('detail-item')}>
-              <label className={cx('detail-label')}>Thời gian kết thúc:</label>
+              <label className={cx('detail-label')}>終了時間:</label>
               <div className={cx('detail-value')}>{formattedEndTime}</div>
             </div>
 
             <div className={cx('detail-item')}>
-              <label className={cx('detail-label')}>Giá:</label>
+              <label className={cx('detail-label')}>価格:</label>
               <div className={cx('detail-value')}>{data.totalPrice && formatCurrency(data.totalPrice)}</div>
             </div>
 
             <Button onClick={() => handleUpdate(data.id)} className={cx('btn')} blue>
-              Cập nhật
+              更新
             </Button>
           </div>
         </animated.div>

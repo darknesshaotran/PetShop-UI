@@ -14,7 +14,7 @@ const ChatGPTUI = () => {
     setLoading(true); // Hiển thị loader khi bắt đầu gửi câu hỏi
     setQuestion('');
     try {
-      const response = await axios.post('https://2hm-store.click/api/research', { prompt });
+      const response = await axios.post('http://localhost:8000/api/research', { prompt });
       const newAnswer = response.data.result
         .replace(/## (.*?)(?=\n|$)/g, '<h2>$1</h2>')
         .replace(/### (.*?)(?=\n|$)/g, '<h3>$1</h3>')
@@ -44,8 +44,8 @@ const ChatGPTUI = () => {
           className={cx('profile-picture')}
         />
         <div className={cx('welcome-text')}>
-          <h1>Xin chào quý khách hàng của cửa hàng</h1>
-          <p>Hôm nay tôi giúp gì được cho bạn?</p>
+          <h1>いらっしゃいませ！</h1>
+          <p>本日はどのようなご用件でしょうか？</p>
         </div>
       </div>
 
@@ -64,7 +64,7 @@ const ChatGPTUI = () => {
         <span className={cx('plus-icon')}>+</span>
         <input
           type="text"
-          placeholder="Gửi tin nhắn..."
+          placeholder="メッセージを入力..."
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
           onKeyDown={(e) => {

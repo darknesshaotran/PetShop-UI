@@ -37,7 +37,7 @@ function Login() {
 
   const handleLoginSubmit = async () => {
     try {
-      const response = await fetch('https://2hm-store.click/api/user/login/', {
+      const response = await fetch('http://localhost:8000/api/user/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ function Login() {
 
       const data = await response.json();
       if (data.success === true) {
-        toast.success('Login successful');
+        toast.success('ログインに成功しました！');
         localStorage.setItem('Role', data.role);
         document.cookie = `token=${data.accessToken}`;
         setTimeout(() => {
@@ -69,12 +69,12 @@ function Login() {
   };
 
   const handleLoginWithGoogle = () => {
-    window.location.replace('https://2hm-store.click/api/user/auth/google');
+    window.location.replace('http://localhost:8000/api/user/auth/google');
   };
 
   const HandleSubmitSignUp = async () => {
     try {
-      const response = await fetch('https://2hm-store.click/api/user/register', {
+      const response = await fetch('http://localhost:8000/api/user/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ function Login() {
       const data = await response.json();
       // console.log(data);
       if (data.success === true) {
-        toast.success('Register successful!');
+        toast.success('新規登録に成功しました！');
         setTimeout(() => {
           setIsSignupMode(false);
         }, 10000);
@@ -134,7 +134,7 @@ function Login() {
         <div className={cx('form-container')}>
           <div className={cx('signin-signup')}>
             <div className={cx('sign-in-form')}>
-              <h2 className={cx('title')}>ĐĂNG NHẬP</h2>
+              <h2 className={cx('title')}>ログイン</h2>
               <InputForm
                 placeholder="Email"
                 leftIcon={faUser}
@@ -145,7 +145,7 @@ function Login() {
               />
 
               <InputForm
-                placeholder="Mật khẩu"
+                placeholder="パスワード"
                 leftIcon={faLock}
                 type="password"
                 value={payload.PasswordLogin}
@@ -155,18 +155,18 @@ function Login() {
 
               <div className={cx('button-container')}>
                 <Button signin_signup className={cx('btn')} onClick={handleLoginSubmit} id="LoginBtn">
-                  Đăng nhập
+                  ログイン
                 </Button>
 
                 <Button signin_signup className={cx('btn')} onClick={handleLoginWithGoogle} id="LoginBtn">
-                  Đăng nhập với Google
+                  Googleでログイン
                 </Button>
               </div>
             </div>
             <div className={cx('sign-up-form')}>
-              <h2 className={cx('title')}>ĐĂNG KÝ</h2>
+              <h2 className={cx('title')}>登録</h2>
               <InputForm
-                placeholder="Họ"
+                placeholder="姓"
                 leftIcon={faSignature}
                 type="text"
                 value={payload2.firstName}
@@ -175,7 +175,7 @@ function Login() {
               />
 
               <InputForm
-                placeholder="Tên"
+                placeholder="名"
                 leftIcon={faSignature}
                 type="text"
                 value={payload2.lastName}
@@ -184,7 +184,7 @@ function Login() {
               />
 
               <InputForm
-                placeholder="Số điện thoại"
+                placeholder="電話番号"
                 leftIcon={faPhone}
                 type="text"
                 value={payload2.phoneNumber}
@@ -202,7 +202,7 @@ function Login() {
               />
 
               <InputForm
-                placeholder="Mật khẩu"
+                placeholder="パスワード"
                 leftIcon={faLock}
                 type="text"
                 value={payload2.PasswordRegister}
@@ -211,7 +211,7 @@ function Login() {
               />
 
               <InputForm
-                placeholder="Nhập lại password"
+                placeholder="パスワードを再入力"
                 leftIcon={faLock}
                 type="text"
                 value={payload2.confirm_password}
@@ -219,7 +219,7 @@ function Login() {
                 name={'confirm_password'}
               />
               <Button signin_signup className={cx('btn')} onClick={HandleSubmitSignUp} id="RegisterBtn">
-                Đăng ký
+                登録
               </Button>
             </div>
           </div>
@@ -230,7 +230,7 @@ function Login() {
               <h3>BH SHOP </h3>
               <p>Lê Khắc Quốc Bảo - Trần Anh Hào</p>
               <button className={cx('btn', 'transparent')} onClick={handleSignupClick} id="Register">
-                Đăng ký
+                登録
               </button>
             </div>
             <img className={cx('image')} src={images.log} alt="logo-log"></img>
@@ -241,7 +241,7 @@ function Login() {
               <h3>BH SHOP </h3>
               <p>Lê Khắc Quốc Bảo - Trần Anh Hào</p>
               <button className={cx('btn', 'transparent')} onClick={handleSigninClick} id="Login">
-                Đăng nhập
+                ログイン
               </button>
             </div>
             <img className={cx('image')} src={images.register} alt="logo-log"></img>

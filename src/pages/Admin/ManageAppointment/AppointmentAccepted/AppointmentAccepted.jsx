@@ -15,7 +15,7 @@ function AppointmentAccepted() {
 
   useEffect(() => {
     const getApiAppointmentAccepted = async () => {
-      const response = await axios.get('https://2hm-store.click/api/appointment/6', {
+      const response = await axios.get('http://localhost:8000/api/appointment/6', {
         headers: { Authorization: `Bearer ${GetToken()}` },
       });
       const Appointment = response.data.detailAppointment.map((appointment) => {
@@ -35,7 +35,7 @@ function AppointmentAccepted() {
     <div className={cx('content')}>
       <MenuAppointment />
       <div className={cx('header-content')}>
-        <span className={cx('title-content')}>Cuộc hẹn đã chấp nhận</span>
+        <span className={cx('title-content')}>承認済みの予約</span>
       </div>
       <div className={cx('order-list')}>
         {orderList.map((order) => {
