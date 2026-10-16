@@ -42,12 +42,12 @@ function ManageBreeds() {
     const errors = {};
 
     if (!payloadUpdate.name.trim()) {
-      errors.name = 'Hãy nhập tên chủng loài';
+      errors.name = '種類名を入力してください';
       isValid = false;
     }
 
     if (!payloadUpdate.description.trim()) {
-      errors.description = 'Hãy nhập mô tả';
+      errors.description = '説明を入力してください';
       isValid = false;
     }
     setErrorMessages(errors);
@@ -234,12 +234,12 @@ function ManageBreeds() {
       cell: (row) => <img src={row.image} alt={row.name} width="100px" height="100px" />,
     },
     {
-      name: 'Chủng loài',
+      name: '種類',
       selector: (row) => row.name,
       sortable: true,
     },
     {
-      name: 'Mô tả',
+      name: '説明',
       selector: (row) => row.description.slice(0, 100),
       sortable: true,
     },
@@ -277,7 +277,7 @@ function ManageBreeds() {
         theme="light"
       />
       <DataTable
-        title="Danh sách chủng loài"
+        title="種類リスト"
         columns={columns}
         data={filteredBreeds}
         fixedHeader
@@ -290,11 +290,11 @@ function ManageBreeds() {
         subHeaderComponent={
           <div className={cx('wrapper-header')} style={{ zIndex: 0 }}>
             <Button onClick={openModalAdd} leftIcon={<FontAwesomeIcon icon={faPlus} />} blue>
-              Thêm chủng loài
+              種類追加
             </Button>
             <input
               type="text"
-              placeholder="Tìm kiếm chủng loài"
+              placeholder="種類検索..."
               className={cx('search')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}

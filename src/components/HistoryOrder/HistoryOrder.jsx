@@ -226,9 +226,9 @@ function HistoryOrder({ data, icon }) {
   }
 
   function formatCurrency(number) {
-    const formatter = new Intl.NumberFormat('vi-VN', {
+    const formatter = new Intl.NumberFormat('ja-JP', {
       style: 'currency',
-      currency: 'VND',
+      currency: 'JPY',
     });
     return formatter.format(number);
   }

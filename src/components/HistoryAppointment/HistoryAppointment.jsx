@@ -210,11 +210,11 @@ function HistoryAppointment({ data, icon }) {
           className={cx('btn')}
           blue
         >
-          Chi tiết
+          詳細
         </Button>
 
         <Button onClick={() => handleChangeAppointmentCancel(data.id)} className={cx('btn')} outline>
-          Hủy
+          キャンセル
         </Button>
       </div>
     );
@@ -229,7 +229,7 @@ function HistoryAppointment({ data, icon }) {
           className={cx('btn')}
           blue
         >
-          Chi tiết
+          詳細
         </Button>
       </div>
     );
@@ -244,7 +244,7 @@ function HistoryAppointment({ data, icon }) {
           className={cx('btn')}
           blue
         >
-          Chi tiết
+          詳細
         </Button>
       </div>
     );
@@ -259,16 +259,16 @@ function HistoryAppointment({ data, icon }) {
           className={cx('btn')}
           blue
         >
-          Chi tiết
+          詳細
         </Button>
       </div>
     );
   }
 
   function formatCurrency(number) {
-    const formatter = new Intl.NumberFormat('vi-VN', {
+    const formatter = new Intl.NumberFormat('ja-JP', {
       style: 'currency',
-      currency: 'VND',
+      currency: 'JPY',
     });
     return formatter.format(number);
   }
